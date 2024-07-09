@@ -42,40 +42,30 @@ export const Content = styled.div`
   }
 `
 
-export const LoginFormWrapper = styled.div`
+export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 `
 
-export const LoginForm = styled.form`
+export const LoginFormInputsWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     padding-bottom: 1.5rem;
+    border-bottom: 1px solid ${theme.colors.white};
 
-    border-bottom: 1px solid ${theme.colors.gray[800]};
-  `}
-`
+    label {
+      display: flex;
+      flex-direction: column;
 
-export const LoginFormRow = styled.div`
-  display: flex;
-  flex-direction: column;
+      gap: 0.5rem;
+    }
 
-  gap: 0.5rem;
-`
-
-export const LoginFormInput = styled.input`
-  ${({ theme }) => css`
-    height: 2rem;
-    border-radius: 6px;
-
-    color: ${theme.colors.gray[800]};
-    background-color: ${theme.colors.gray[200]};
-    border: 1px solid ${theme.colors.gray[500]};
-
-    padding: 0.5rem 1rem;
+    input {
+      height: 2rem;
+    }
   `}
 `
