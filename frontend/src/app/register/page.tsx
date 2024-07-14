@@ -38,7 +38,7 @@ export default function Register() {
               <PasswordInput />
             </label>
           </S.LoginFormInputsWrapper>
-          <Button type="submit" text="Cadastrar" />
+          <Button type="submit">Cadastrar</Button>
         </S.LoginForm>
         <footer>
           <span>

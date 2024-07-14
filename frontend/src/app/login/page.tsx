@@ -30,7 +30,7 @@ export default function Login() {
               <PasswordInput />
             </label>
           </S.LoginFormInputsWrapper>
-          <Button type="submit" text="Login" />
+          <Button type="submit">Login</Button>
         </S.LoginForm>
         <footer>
           <span>
