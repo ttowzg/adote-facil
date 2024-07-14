@@ -1,8 +1,10 @@
 'use client'
 
-import { Button } from '@/components/Button'
-import * as S from './styles'
 import { FormEvent } from 'react'
+import { Button } from '@/components/Button'
+import { PasswordInput } from '@/components/PasswordInput'
+
+import * as S from './styles'
 
 // TODO validar campos antes do submit e exibir mensagens caso hajam erros
 export default function Login() {
@@ -25,7 +27,7 @@ export default function Login() {
             </label>
             <label>
               Senha
-              <input type="password" />
+              <PasswordInput />
             </label>
           </S.LoginFormInputsWrapper>
           <Button type="submit" text="Login" />
