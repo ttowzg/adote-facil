@@ -52,3 +52,32 @@ export const AnimalInfo = styled.div`
 
   font-size: 0.75rem;
 `
+
+export const MyAnimalsButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  gap: 0.5rem;
+`
+
+interface MyAnimalsButtonProps {
+  type: 'edit' | 'delete'
+}
+
+export const MyAnimalsButton = styled.button<MyAnimalsButtonProps>`
+  ${({ theme, type }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+
+    background: none;
+
+    color: ${type === 'edit' ? theme.colors.green[300] : theme.colors.red[700]};
+    border: 1px solid
+      ${type === 'edit' ? theme.colors.green[300] : theme.colors.red[700]};
+
+    border-radius: 6px;
+  `}
+`

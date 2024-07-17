@@ -1,21 +1,19 @@
 'use client'
 
-import { Button } from '@/components/Button'
-import * as S from './styles'
 import { Header } from '@/components/Header'
-import { AnimalCard } from '@/components/AnimalCard'
+import * as S from './styles'
 import { mockAnimals } from '@/mocks/animals'
+import { AnimalCard } from '@/components/AnimalCard'
 import { EmptyAnimals } from '@/components/EmptyAnimals'
 
-export default function Home() {
+export default function MyAnimals() {
   return (
     <S.Wrapper>
       <Header />
 
       <S.Content>
         <S.TitleWrapper>
-          <h1>Animais disponíveis para adoção</h1>
-          {!!mockAnimals.length && <Button>Filtrar</Button>}
+          <h1>Meus animais disponíveis para adoção</h1>
         </S.TitleWrapper>
         {mockAnimals.length ? (
           <S.AnimalsListWrapper>
@@ -23,7 +21,7 @@ export default function Home() {
               <AnimalCard
                 key={animal.id}
                 animal={animal}
-                listType="animals-available-to-adopt"
+                listType="my-animals"
               />
             ))}
           </S.AnimalsListWrapper>
