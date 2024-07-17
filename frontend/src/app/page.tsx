@@ -5,6 +5,7 @@ import * as S from './styles'
 import { Header } from '@/components/Header'
 import { AnimalCard } from '@/components/AnimalCard'
 import { mockAnimals } from '@/mocks/animals'
+import { EmptyAnimals } from '@/components/EmptyAnimals'
 
 export default function Home() {
   return (
@@ -14,13 +15,17 @@ export default function Home() {
       <S.Content>
         <S.TitleWrapper>
           <h1>Animais disponíveis para adoção</h1>
-          <Button>Filtrar</Button>
+          {!!mockAnimals.length && <Button>Filtrar</Button>}
         </S.TitleWrapper>
-        <S.AnimalsListWrapper>
-          {mockAnimals.map((animal) => (
-            <AnimalCard key={animal.id} {...animal} />
-          ))}
-        </S.AnimalsListWrapper>
+        {mockAnimals.length ? (
+          <S.AnimalsListWrapper>
+            {mockAnimals.map((animal) => (
+              <AnimalCard key={animal.id} {...animal} />
+            ))}
+          </S.AnimalsListWrapper>
+        ) : (
+          <EmptyAnimals />
+        )}
       </S.Content>
     </S.Wrapper>
   )
