@@ -24,7 +24,6 @@ export const TitleWrapper = styled.div`
     h1 {
       color: ${theme.colors.white};
       font-size: 1rem;
-      font-weight: 600;
     }
 
     button {
