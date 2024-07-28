@@ -10,7 +10,7 @@ interface AnimalCardProps {
     type: string
     monthOfBirth?: number
     yearOfBirth?: number
-    sex: 'Macho' | 'Fêmea'
+    gender: 'Macho' | 'Fêmea'
     race: string
     size: 'Pequeno' | 'Médio' | 'Grande'
     images: string[]
@@ -21,7 +21,7 @@ interface AnimalCardProps {
 // TODO implementar carrossel de imagens
 // TODO melhorar estilização da imagem pra não quebrar o layout
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { id, type, monthOfBirth, yearOfBirth, sex, race, size, images } =
+  const { id, type, monthOfBirth, yearOfBirth, gender, race, size, images } =
     animal
 
   // TODO validar se não tem uma forma melhor de fazer isso
@@ -38,7 +38,7 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
           <span>
             Idade: {calculateAnimalAge({ monthOfBirth, yearOfBirth })}
           </span>
-          <span>Sexo: {sex}</span>
+          <span>Gênero: {gender}</span>
           <span>Raça: {race}</span>
           <span>Porte: {size}</span>
         </S.AnimalInfo>
