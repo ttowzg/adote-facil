@@ -1,16 +1,24 @@
 'use client'
 
+import { useState } from 'react'
+import { Plus } from '@phosphor-icons/react'
+
 import { Header } from '@/components/Header'
-
-import * as S from './styles'
-
 import { DefaultSelect } from '@/components/DefaultSelect/DefaultSelect'
 import { animalTypesForSelect } from '@/constants/animal-types-for-select'
 import { animalGenderForSelect } from '@/constants/animal-gender-for-select'
-import { Plus } from '@phosphor-icons/react'
+
+import * as S from './styles'
 
 // TODO implementar regra do input nasc ter o formato de data
 export default function Animal() {
+  const [animalPictures, setAnimalPictures] = useState<File[]>([])
+
+  const handleAnimalImageUpload = (e) => {
+    console.log(e.target.files)
+    setAnimalPictures([...animalPictures, ...e.target.files])
+  }
+
   return (
     <S.Wrapper>
       <Header />
@@ -85,13 +93,30 @@ export default function Animal() {
                 id="animalPictures"
                 name="animalPictures"
                 accept="image/png, image/jpeg"
+                onChange={handleAnimalImageUpload}
               />
-              <S.AnimalPicturesInput htmlFor="animalPictures">
-                <div>
-                  <Plus size={24} />
-                </div>
-                <span>Adicionar</span>
-              </S.AnimalPicturesInput>
+              <S.AddAnimalPicturesSwiper spaceBetween={10} slidesPerView={3}>
+                <S.AnimalPictureSwiperSlide>
+                  <S.AnimalPicturesInput htmlFor="animalPictures">
+                    <div>
+                      <Plus size={24} />
+                    </div>
+                    <span>Adicionar</span>
+                  </S.AnimalPicturesInput>
+                </S.AnimalPictureSwiperSlide>
+
+                {animalPictures.map((file) => (
+                  <S.AnimalPictureSwiperSlide key={file.name}>
+                    <S.AnimalPicture
+                      src={URL.createObjectURL(file)}
+                      width={92}
+                      height={135}
+                      alt="animal picture"
+                    />
+                    {/* TODO adicionar botão de remover imagem */}
+                  </S.AnimalPictureSwiperSlide>
+                ))}
+              </S.AddAnimalPicturesSwiper>
             </S.AnimalPicturesInputWrapper>
           </S.FormRow>
         </S.Form>

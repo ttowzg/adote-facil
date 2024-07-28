@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
+import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -166,6 +168,20 @@ export const AnimalPicturesInputWrapper = styled.div`
   }
 `
 
+export const AddAnimalPicturesSwiper = styled(Swiper)`
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px;
+`
+
+export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 92px;
+  height: 137px;
+`
+
 export const AnimalPicturesInput = styled.label`
   ${({ theme }) => css`
     display: flex;
@@ -193,4 +209,12 @@ export const AnimalPicturesInput = styled.label`
       height: 32px;
     }
   `}
+`
+
+export const AnimalPicture = styled(Image)`
+  border-radius: 6px;
+  width: 94px;
+  height: 135px;
+
+  object-fit: cover;
 `
