@@ -14,8 +14,10 @@ import * as S from './styles'
 export default function Animal() {
   const [animalPictures, setAnimalPictures] = useState<File[]>([])
 
-  const handleAnimalImageUpload = (e) => {
-    setAnimalPictures([...animalPictures, ...e.target.files])
+  const handleAnimalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setAnimalPictures([...animalPictures, ...Array.from(e.target.files)])
+    }
   }
 
   const handleRemoveAnimalPicture = (picIndex: number) => {
