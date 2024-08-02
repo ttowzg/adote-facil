@@ -94,6 +94,7 @@ export default function Animal() {
                 name="animalPictures"
                 accept="image/png, image/jpeg"
                 onChange={handleAnimalImageUpload}
+                multiple
               />
               <S.AddAnimalPicturesSwiper spaceBetween={10} slidesPerView={3}>
                 <S.AnimalPictureSwiperSlide>
