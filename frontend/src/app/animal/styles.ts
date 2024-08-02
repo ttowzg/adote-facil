@@ -194,6 +194,21 @@ export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
 
     gap: 0.5rem;
 
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      padding: 0.25rem 0.5rem;
+
+      border: none;
+      border-radius: 4px;
+      background-color: ${theme.colors.gray[300]};
+      color: ${theme.colors.red[700]};
+
+      font-size: 10px;
+    }
   `}
 `
 

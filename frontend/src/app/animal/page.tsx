@@ -15,8 +15,15 @@ export default function Animal() {
   const [animalPictures, setAnimalPictures] = useState<File[]>([])
 
   const handleAnimalImageUpload = (e) => {
-    console.log(e.target.files)
     setAnimalPictures([...animalPictures, ...e.target.files])
+  }
+
+  const handleRemoveAnimalPicture = (picIndex: number) => {
+    const newAnimalPictures = animalPictures.filter(
+      (pic, index) => picIndex !== index,
+    )
+
+    setAnimalPictures(newAnimalPictures)
   }
 
   return (
@@ -106,15 +113,20 @@ export default function Animal() {
                   </S.AnimalPicturesInput>
                 </S.AnimalPictureSwiperSlide>
 
-                {animalPictures.map((file) => (
+                {animalPictures.map((file, index) => (
                   <S.AnimalPictureSwiperSlide key={index}>
                     <S.AnimalPicture
                       src={URL.createObjectURL(file)}
                       width={92}
-                      height={135}
+                      height={137}
                       alt="animal picture"
                     />
-                    {/* TODO adicionar botão de remover imagem */}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveAnimalPicture(index)}
+                    >
+                      Remover
+                    </button>
                   </S.AnimalPictureSwiperSlide>
                 ))}
               </S.AddAnimalPicturesSwiper>
