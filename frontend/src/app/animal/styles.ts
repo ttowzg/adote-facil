@@ -170,16 +170,31 @@ export const AnimalPicturesInputWrapper = styled.div`
 
 export const AddAnimalPicturesSwiper = styled(Swiper)`
   display: flex;
+
   justify-content: flex-start;
   margin: 0px;
+  overflow: hidden;
+
+  .swiper-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `
 
 export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 92px;
-  height: 137px;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 94px;
+
+    border-radius: 6px;
+
+    gap: 0.5rem;
+
+  `}
 `
 
 export const AnimalPicturesInput = styled.label`
