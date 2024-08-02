@@ -5,8 +5,12 @@ import { animalGenderForSelect } from '@/constants/animal-gender-for-select'
 import { Plus } from '@phosphor-icons/react'
 import { useState } from 'react'
 
+interface AnimalFormProps {
+  location: 'page' | 'modal'
+}
+
 // TODO implementar regra do input nasc ter o formato de data
-export function AnimalForm() {
+export function AnimalForm({ location }: AnimalFormProps) {
   const [animalPictures, setAnimalPictures] = useState<File[]>([])
 
   const handleAnimalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +28,7 @@ export function AnimalForm() {
   }
 
   return (
-    <S.Form>
+    <S.Form location={location}>
       <S.FormRow>
         <S.AnimalTypeInputWrapper>
           <span>Tipo</span>

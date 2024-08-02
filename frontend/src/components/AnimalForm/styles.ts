@@ -4,10 +4,18 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+interface FormProps {
+  location: 'page' | 'modal'
+}
+
+export const Form = styled.form<FormProps>`
+  ${({ location }) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    font-size: ${location === 'page' ? '1rem' : '0.75rem'};
+  `}
 `
 
 export const FormRow = styled.div`

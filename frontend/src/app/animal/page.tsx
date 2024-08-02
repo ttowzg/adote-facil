@@ -14,7 +14,7 @@ export default function Animal() {
           <h1>Cadastrar animal para adoção</h1>
         </S.TitleWrapper>
 
-        <AnimalForm />
+        <AnimalForm location="page" />
       </S.Content>
     </S.Wrapper>
   )
