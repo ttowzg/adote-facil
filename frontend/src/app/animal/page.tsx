@@ -107,7 +107,7 @@ export default function Animal() {
                 </S.AnimalPictureSwiperSlide>
 
                 {animalPictures.map((file) => (
-                  <S.AnimalPictureSwiperSlide key={file.name}>
+                  <S.AnimalPictureSwiperSlide key={index}>
                     <S.AnimalPicture
                       src={URL.createObjectURL(file)}
                       width={92}
