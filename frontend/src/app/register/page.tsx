@@ -15,37 +15,32 @@ export default function Register() {
 
   return (
     <S.Wrapper>
-      <S.Header>
-        <h1>Cadastro</h1>
-      </S.Header>
-      <S.Content>
-        <S.LoginForm onSubmit={handleSubmit}>
-          <S.LoginFormInputsWrapper>
-            <label>
-              Nome
-              <input type="text" />
-            </label>
-            <label>
-              Email
-              <input type="email" />
-            </label>
-            <label>
-              Senha
-              <PasswordInput />
-            </label>
-            <label>
-              Confirme a senha
-              <PasswordInput />
-            </label>
-          </S.LoginFormInputsWrapper>
-          <Button type="submit">Cadastrar</Button>
-        </S.LoginForm>
-        <footer>
-          <span>
-            Já possui uma conta? <a href="/login">Faça login</a>
-          </span>
-        </footer>
-      </S.Content>
+      <S.LoginForm onSubmit={handleSubmit}>
+        <S.LoginFormInputsWrapper>
+          <label>
+            Nome
+            <input type="text" />
+          </label>
+          <label>
+            Email
+            <input type="email" />
+          </label>
+          <label>
+            Senha
+            <PasswordInput />
+          </label>
+          <label>
+            Confirme a senha
+            <PasswordInput />
+          </label>
+        </S.LoginFormInputsWrapper>
+        <Button type="submit">Cadastrar</Button>
+      </S.LoginForm>
+      <footer>
+        <span>
+          Já possui uma conta? <a href="/login">Faça login</a>
+        </span>
+      </footer>
     </S.Wrapper>
   )
 }

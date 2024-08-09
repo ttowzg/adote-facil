@@ -15,29 +15,24 @@ export default function Login() {
 
   return (
     <S.Wrapper>
-      <S.Header>
-        <h1>Login</h1>
-      </S.Header>
-      <S.Content>
-        <S.LoginForm onSubmit={handleSubmit}>
-          <S.LoginFormInputsWrapper>
-            <label>
-              Email
-              <input type="email" />
-            </label>
-            <label>
-              Senha
-              <PasswordInput />
-            </label>
-          </S.LoginFormInputsWrapper>
-          <Button type="submit">Login</Button>
-        </S.LoginForm>
-        <footer>
-          <span>
-            Ainda não tem uma conta? <a href="/register">Cadastre-se</a>
-          </span>
-        </footer>
-      </S.Content>
+      <S.LoginForm onSubmit={handleSubmit}>
+        <S.LoginFormInputsWrapper>
+          <label>
+            Email
+            <input type="email" />
+          </label>
+          <label>
+            Senha
+            <PasswordInput />
+          </label>
+        </S.LoginFormInputsWrapper>
+        <Button type="submit">Login</Button>
+      </S.LoginForm>
+      <footer>
+        <span>
+          Ainda não tem uma conta? <a href="/register">Cadastre-se</a>
+        </span>
+      </footer>
     </S.Wrapper>
   )
 }

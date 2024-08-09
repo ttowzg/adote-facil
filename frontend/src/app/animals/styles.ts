@@ -5,13 +5,8 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
-  padding: 2rem 1rem;
+  padding: 1rem;
 `
 
 export const TitleWrapper = styled.div`
