@@ -18,13 +18,13 @@ export const Wrapper = styled.div`
   }
 `
 
-export const LoginForm = styled.form`
+export const RegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 `
 
-export const LoginFormInputsWrapper = styled.div`
+export const RegisterFormInputsWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;

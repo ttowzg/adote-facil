@@ -15,8 +15,8 @@ export default function Register() {
 
   return (
     <S.Wrapper>
-      <S.LoginForm onSubmit={handleSubmit}>
-        <S.LoginFormInputsWrapper>
+      <S.RegisterForm onSubmit={handleSubmit}>
+        <S.RegisterFormInputsWrapper>
           <label>
             Nome
             <input type="text" />
@@ -33,9 +33,9 @@ export default function Register() {
             Confirme a senha
             <PasswordInput />
           </label>
-        </S.LoginFormInputsWrapper>
+        </S.RegisterFormInputsWrapper>
         <Button type="submit">Cadastrar</Button>
-      </S.LoginForm>
+      </S.RegisterForm>
       <footer>
         <span>
           Já possui uma conta? <a href="/login">Faça login</a>
