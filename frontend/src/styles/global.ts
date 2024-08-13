@@ -28,7 +28,8 @@ export const GlobalStyles = createGlobalStyle`
       color: ${theme.colors.green[300]};
     }
 
-    input {
+    input,
+    textarea {
       border-radius: 6px;
 
       color: ${theme.colors.gray[800]};
