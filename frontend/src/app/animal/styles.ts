@@ -3,8 +3,16 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  height: calc(100vh - 4rem);
   padding: 1rem;
+  box-sizing: border-box;
+`
+
+export const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `
 
 export const TitleWrapper = styled.div`
