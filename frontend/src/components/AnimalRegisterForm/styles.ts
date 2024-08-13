@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import * as RadioGroup from '@radix-ui/react-radio-group'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -26,42 +25,10 @@ export const AnimalTypeInputWrapper = styled.div`
   gap: 0.25rem;
 
   width: 100%;
-`
 
-export const AnimalBirthInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    display: flex;
-    flex-direction: column;
-
-    gap: 0.25rem;
-
-    width: 60px;
-
-    input {
-      padding: 0.5rem;
-    }
-  }
-`
-
-export const AnimalRaceInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  label {
-    display: flex;
-    flex-direction: column;
-
-    gap: 0.25rem;
-
-    /* width: 190px; */
-
-    input {
-      padding: 0.5rem;
-    }
+  > span::after {
+    content: '*';
+    color: ${({ theme }) => theme.colors.red[700]};
   }
 `
 
@@ -71,61 +38,50 @@ export const AnimalGenderInputWrapper = styled.div`
 
   gap: 0.25rem;
 
-  width: 8rem;
+  width: 50%;
+
+  > span::after {
+    content: '*';
+    color: ${({ theme }) => theme.colors.red[700]};
+  }
 `
 
-export const AnimalSizeWrapper = styled.div`
+export const AnimalRaceInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.25rem;
+
+    input {
+      padding: 0.5rem;
+    }
+  }
+`
+
+export const AnimalDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
   gap: 0.25rem;
 
   width: 100%;
-`
 
-export const RadioGroupRoot = styled(RadioGroup.Root)`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  width: 100%;
-`
-
-export const RadioGroupItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-`
-
-export const RadioGroupItem = styled(RadioGroup.Item)`
-  ${({ theme }) => css`
-    background-color: ${theme.colors.gray[200]};
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    border: 1px solid ${theme.colors.gray[500]};
-  `}
-`
-
-export const RadioGroupIndicator = styled(RadioGroup.Indicator)`
-  ${({ theme }) => css`
+  label {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: relative;
+    flex-direction: column;
 
-    &::after {
-      content: '';
-      display: block;
-      width: 10px;
-      height: 10px;
-      border-radius: 100%;
-      background-color: ${theme.colors.gray[500]};
+    gap: 0.25rem;
+
+    textarea {
+      padding: 0.5rem;
+      height: 4rem;
     }
-  `}
+  }
 `
 
 export const AnimalPicturesInputWrapper = styled.div`

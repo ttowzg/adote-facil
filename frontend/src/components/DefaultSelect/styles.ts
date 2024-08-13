@@ -28,7 +28,8 @@ export const SelectIcon = styled(Select.Icon)`
     align-items: center;
     justify-content: center;
     border-left: 1px solid ${theme.colors.gray[500]};
-    padding: 4px;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
   `}
 `
 
@@ -50,7 +51,7 @@ export const SelectScrollUpButton = styled(Select.ScrollUpButton)`
 export const SelectViewport = styled(Select.Viewport)`
   ${({ theme }) => css`
     padding: 0.5rem;
-    background-color: ${theme.colors.gray[300]};
+    background-color: ${theme.colors.gray[200]};
   `}
 `
 

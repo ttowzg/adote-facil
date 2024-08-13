@@ -33,53 +33,29 @@ export function AnimalRegisterForm() {
             items={animalTypesForSelect}
           />
         </S.AnimalTypeInputWrapper>
-
-        <S.AnimalBirthInputWrapper>
-          <label>
-            Nasc.
-            <input type="text" />
-          </label>
-        </S.AnimalBirthInputWrapper>
       </S.FormRow>
 
       <S.FormRow>
+        <S.AnimalGenderInputWrapper>
+          <span>Gênero</span>
+          <DefaultSelect placeholder="" items={animalGenderForSelect} />
+        </S.AnimalGenderInputWrapper>
+
         <S.AnimalRaceInputWrapper>
           <label>
             Raça
             <input type="text" />
           </label>
         </S.AnimalRaceInputWrapper>
-
-        <S.AnimalGenderInputWrapper>
-          <span>Gênero</span>
-          <DefaultSelect placeholder="" items={animalGenderForSelect} />
-        </S.AnimalGenderInputWrapper>
       </S.FormRow>
 
       <S.FormRow>
-        <S.AnimalSizeWrapper>
-          <span>Porte</span>
-          <S.RadioGroupRoot>
-            <S.RadioGroupItemWrapper>
-              <S.RadioGroupItem value="pequeno" id="r1">
-                <S.RadioGroupIndicator />
-              </S.RadioGroupItem>
-              <label htmlFor="r1">Pequeno</label>
-            </S.RadioGroupItemWrapper>
-            <S.RadioGroupItemWrapper>
-              <S.RadioGroupItem value="medio" id="r2">
-                <S.RadioGroupIndicator />
-              </S.RadioGroupItem>
-              <label htmlFor="r2">Médio</label>
-            </S.RadioGroupItemWrapper>
-            <S.RadioGroupItemWrapper>
-              <S.RadioGroupItem value="grande" id="r3">
-                <S.RadioGroupIndicator />
-              </S.RadioGroupItem>
-              <label htmlFor="r3">Grande</label>
-            </S.RadioGroupItemWrapper>
-          </S.RadioGroupRoot>
-        </S.AnimalSizeWrapper>
+        <S.AnimalDescriptionWrapper>
+          <label>
+            Descrição
+            <textarea />
+          </label>
+        </S.AnimalDescriptionWrapper>
       </S.FormRow>
 
       <S.FormRow>
