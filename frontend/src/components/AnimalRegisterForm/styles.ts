@@ -1,7 +1,47 @@
 import styled, { css } from 'styled-components'
+import * as Dialog from '@radix-ui/react-dialog'
 
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
+
+export const MaxAnimalPicturesWarningModalOverlay = styled(Dialog.Overlay)`
+  ${({ theme }) => css`
+    background-color: ${theme.colors.gray[100]};
+    opacity: 0.5;
+    position: fixed;
+    inset: 0;
+  `}
+`
+
+export const MaxAnimalPicturesWarningModalContent = styled(Dialog.Content)`
+  ${({ theme }) => css`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: ${theme.colors.gray[300]};
+
+    border-radius: 6px;
+
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+
+    span {
+      text-align: center;
+    }
+
+    button {
+      height: 2rem;
+    }
+  `}
+`
 
 export const Form = styled.form`
   display: flex;
@@ -141,8 +181,12 @@ export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
   `}
 `
 
-export const AnimalPicturesInput = styled.label`
-  ${({ theme }) => css`
+interface AnimalPicturesInputProps {
+  enabled: boolean
+}
+
+export const AnimalPicturesInput = styled.label<AnimalPicturesInputProps>`
+  ${({ enabled, theme }) => css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,15 +197,17 @@ export const AnimalPicturesInput = styled.label`
     width: 92px;
     height: 135px;
 
-    color: ${theme.colors.green[300]};
-    border: 1px solid ${theme.colors.green[300]};
+    color: ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
+    border: 1px solid
+      ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
     border-radius: 6px;
 
     div {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid ${theme.colors.green[300]};
+      border: 1px solid
+        ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
       border-radius: 100%;
 
       width: 32px;
