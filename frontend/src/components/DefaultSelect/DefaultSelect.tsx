@@ -1,7 +1,7 @@
 import { CaretDown, Check } from '@phosphor-icons/react'
 import * as Select from '@radix-ui/react-select'
 
-import * as S from './styles'
+import * as S from './DefaultSelect.styles'
 
 interface SelectItem {
   value: string

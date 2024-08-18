@@ -1,4 +1,4 @@
-import * as S from './styles'
+import * as S from './AnimalCard.styles'
 import Image from 'next/image'
 import { Button } from '../Button'
 import { calculateAnimalAge } from '@/helpers/calculate-animal-age'

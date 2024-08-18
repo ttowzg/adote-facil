@@ -1,6 +1,6 @@
 import { animalTypesForSelect } from '@/constants/animal-types-for-select'
 import { DefaultSelect } from '../DefaultSelect'
-import * as S from './styles'
+import * as S from './AnimalRegisterForm.styles'
 import { animalGenderForSelect } from '@/constants/animal-gender-for-select'
 import { Plus } from '@phosphor-icons/react'
 import { useState } from 'react'

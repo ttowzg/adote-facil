@@ -1,5 +1,5 @@
 import { SmileySad } from '@phosphor-icons/react'
-import * as S from './styles'
+import * as S from './EmptyAnimals.styles'
 
 export function EmptyAnimals() {
   return (

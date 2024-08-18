@@ -1,7 +1,7 @@
 import { Eye, EyeSlash } from '@phosphor-icons/react'
 import { useState } from 'react'
 
-import * as S from './styles'
+import * as S from './PasswordInput.styles'
 
 export function PasswordInput() {
   const [inputType, setInputType] = useState('password')

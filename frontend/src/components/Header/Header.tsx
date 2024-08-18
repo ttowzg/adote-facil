@@ -3,7 +3,7 @@
 import { ChatCircleDots, List } from '@phosphor-icons/react'
 import Image from 'next/image'
 
-import * as S from './styles'
+import * as S from './Header.styles'
 import logo from '../../assets/logo.png'
 
 const pageTitle = {

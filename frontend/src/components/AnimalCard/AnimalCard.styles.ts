@@ -50,7 +50,7 @@ export const AnimalInfo = styled.div`
 
   gap: 0.5rem;
 
-  font-size: 0.75rem;
+  margin-top: 1rem;
 `
 
 export const MyAnimalsButtonsWrapper = styled.div`
