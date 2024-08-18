@@ -20,14 +20,10 @@ export const Wrapper = styled.div`
 export const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 6px;
+  position: relative;
 
-  min-width: 10.5rem;
+  min-width: 9rem;
   height: 10.5rem;
-
-  img {
-    width: auto;
-    height: auto;
-  }
 `
 
 export const Content = styled.div`

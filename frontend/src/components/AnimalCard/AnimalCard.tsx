@@ -1,46 +1,44 @@
-import * as S from './AnimalCard.styles'
 import Image from 'next/image'
-import { Button } from '../Button'
-import { calculateAnimalAge } from '@/helpers/calculate-animal-age'
 import { Pencil, Trash } from '@phosphor-icons/react'
+import { Button } from '@/components/Button'
+import * as S from './AnimalCard.styles'
 
 interface AnimalCardProps {
   animal: {
-    id: number
+    id: string
     type: string
-    monthOfBirth?: number
-    yearOfBirth?: number
     gender: 'Macho' | 'Fêmea'
     race: string
-    size: 'Pequeno' | 'Médio' | 'Grande'
-    images: string[]
+    description: string
+    images: Array<{
+      id: string
+      base64: string
+    }>
   }
   listType: 'my-animals' | 'animals-available-to-adopt'
 }
 
 // TODO implementar carrossel de imagens
-// TODO melhorar estilização da imagem pra não quebrar o layout
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { id, type, monthOfBirth, yearOfBirth, gender, race, size, images } =
-    animal
+  const { type, gender, race, images } = animal
 
-  // TODO validar se não tem uma forma melhor de fazer isso
-  const animalImage = require(`../../assets/${images[0]}`)
+  const animalImageBase64 = images[0].base64
 
   return (
     <S.Wrapper>
       <S.ImageWrapper>
-        <Image src={animalImage} alt="Animal" />
+        <Image
+          src={`data:image/jpeg;base64,${animalImageBase64}`}
+          alt="Animal"
+          layout="fill"
+          objectFit="cover"
+        />
       </S.ImageWrapper>
       <S.Content>
         <S.AnimalInfo>
           <span>Tipo: {type}</span>
-          <span>
-            Idade: {calculateAnimalAge({ monthOfBirth, yearOfBirth })}
-          </span>
           <span>Gênero: {gender}</span>
           <span>Raça: {race}</span>
-          <span>Porte: {size}</span>
         </S.AnimalInfo>
         {listType === 'my-animals' ? (
           <S.MyAnimalsButtonsWrapper>
@@ -53,7 +51,7 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
         ) : (
-          <Button>Contatar dono</Button>
+          <Button>Saiba mais</Button>
         )}
       </S.Content>
     </S.Wrapper>
