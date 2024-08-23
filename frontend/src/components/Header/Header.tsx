@@ -25,7 +25,10 @@ export function Header() {
   return (
     <S.Wrapper>
       <List size={28} />
-      <Image src={logo} alt="Logo" width={29} height={27} />
+      <S.LogoWrapper>
+        <Image src={logo} alt="Logo" layout="fill" />
+      </S.LogoWrapper>
+
       <ChatCircleDots size={28} />
     </S.Wrapper>
   )

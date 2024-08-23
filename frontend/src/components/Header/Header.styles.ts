@@ -22,9 +22,18 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
-    padding: 1rem;
+    height: 2rem;
+    padding: 0.5rem 1rem;
 
     background-color: ${theme.colors.gray[200]};
   `}
+`
+
+export const LogoWrapper = styled.div`
+  position: relative;
+
+  height: 27px;
+  width: 29px;
 `
