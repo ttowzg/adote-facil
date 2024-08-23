@@ -6,8 +6,14 @@ import { EmptyAnimals } from '@/components/EmptyAnimals'
 
 import { mockAnimals } from '@/mocks/animals'
 import * as S from './styles'
+import { useMemo } from 'react'
 
 export default function Animals() {
+  useMemo(() => {
+    // TODO fix error localStorage not defined
+    localStorage.setItem('available-animals', JSON.stringify(mockAnimals))
+  }, [])
+
   return (
     <S.Wrapper>
       <S.TitleWrapper>

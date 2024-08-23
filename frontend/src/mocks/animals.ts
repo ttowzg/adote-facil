@@ -1,11 +1,11 @@
 export const mockAnimals = [
   {
-    id: '1',
+    id: '64baf402-683c-483c-9124-eb4f806ec71e',
     type: 'Gato',
     gender: 'Macho' as const,
     race: 'N/D',
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     images: [
       {
         id: '1',
@@ -22,12 +22,12 @@ export const mockAnimals = [
     ],
   },
   {
-    id: '2',
+    id: '52794809-26e8-4018-973e-9ea4667cd87f',
     type: 'Gato',
     gender: 'Macho' as const,
     race: 'N/D',
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     images: [
       {
         id: '1',
@@ -44,12 +44,12 @@ export const mockAnimals = [
     ],
   },
   {
-    id: '3',
+    id: '9e5e37a9-04e1-4407-8e78-55240b83e4fd',
     type: 'Gato',
     gender: 'Macho' as const,
     race: 'N/D',
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     images: [
       {
         id: '1',
@@ -66,12 +66,12 @@ export const mockAnimals = [
     ],
   },
   {
-    id: '4',
+    id: '046da9bd-38c9-4aa0-94f7-0a2d03162bdb',
     type: 'Gato',
     gender: 'Macho' as const,
     race: 'N/D',
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     images: [
       {
         id: '1',

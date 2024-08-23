@@ -3,6 +3,8 @@ import { Pencil, Trash } from '@phosphor-icons/react'
 import { Button } from '@/components/Button'
 import * as S from './AnimalCard.styles'
 
+import Link from 'next/link'
+
 interface AnimalCardProps {
   animal: {
     id: string
@@ -20,7 +22,7 @@ interface AnimalCardProps {
 
 // TODO implementar carrossel de imagens
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { type, gender, race, images } = animal
+  const { id, type, gender, race, images } = animal
 
   const animalImageBase64 = images[0].base64
 
@@ -51,7 +53,9 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
         ) : (
-          <Button>Saiba mais</Button>
+          <Link href={`/animals/${id}`}>
+            <Button>Saiba mais</Button>
+          </Link>
         )}
       </S.Content>
     </S.Wrapper>
