@@ -6,7 +6,7 @@ import { mockAnimals } from '@/mocks/animals'
 import { AnimalCard } from '@/components/AnimalCard'
 import { EmptyAnimals } from '@/components/EmptyAnimals'
 
-export default function MyAnimals() {
+export default function Page() {
   return (
     <S.Wrapper>
       <Header />

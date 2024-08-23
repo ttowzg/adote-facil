@@ -4,7 +4,7 @@ import { Button } from '@/components/Button'
 import * as S from './styles'
 import { AnimalRegisterForm } from '@/components/AnimalRegisterForm'
 
-export default function Animal() {
+export default function Page() {
   return (
     <S.Wrapper>
       <S.FormWrapper>

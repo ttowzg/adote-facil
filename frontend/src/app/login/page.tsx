@@ -7,7 +7,7 @@ import { PasswordInput } from '@/components/PasswordInput'
 import * as S from './styles'
 
 // TODO validar campos antes do submit e exibir mensagens caso hajam erros
-export default function Login() {
+export default function Page() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log(event)
