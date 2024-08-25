@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { Pagination } from 'swiper/modules'
 import Image from 'next/image'
 
@@ -9,32 +9,19 @@ import 'swiper/css/pagination'
 
 import * as S from './styles'
 import { Button } from '@/components/Button'
-
-interface AnimalDetailsProps {
-  id: string
-  type: string
-  gender: 'Macho' | 'Fêmea'
-  race: string
-  description: string
-  images: { id: string; base64: string }[]
-}
+import { AnimalsContext } from '@/contexts/animals'
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [animal, setAnimal] = useState<AnimalDetailsProps>()
+  const { selectedAnimalToShowDetails, selectAnimalToShowDetails } =
+    useContext(AnimalsContext)
 
-  useMemo(() => {
-    const availableAnimals = JSON.parse(
-      localStorage.getItem('available-animals') || '[]',
-    )
+  // console.log(selectedAnimalToShowDetails)
 
-    const animal = availableAnimals.find(
-      (animal: AnimalDetailsProps) => animal.id === params.id,
-    )
+  useEffect(() => {
+    selectAnimalToShowDetails(params.id)
+  }, [selectAnimalToShowDetails, params.id])
 
-    setAnimal(animal)
-  }, [params.id])
-
-  if (!animal) return <></>
+  if (!selectedAnimalToShowDetails) return <></>
 
   return (
     <S.Wrapper>
@@ -45,7 +32,7 @@ export default function Page({ params }: { params: { id: string } }) {
           modules={[Pagination]}
           pagination={{ clickable: true }}
         >
-          {animal.images.map((image, index) => (
+          {selectedAnimalToShowDetails.images.map((image, index) => (
             <S.AnimalPictureSwiperSlide key={index}>
               <Image
                 src={`data:image/jpeg;base64,${image.base64}`}
@@ -58,14 +45,14 @@ export default function Page({ params }: { params: { id: string } }) {
         </S.AnimalPicturesSwiper>
 
         <S.AnimalInfoWrapper>
-          <span>Tipo: {animal.type}</span>
-          <span>Gênero: {animal.gender}</span>
-          <span>Raça: {animal.race}</span>
+          <span>Tipo: {selectedAnimalToShowDetails.type}</span>
+          <span>Gênero: {selectedAnimalToShowDetails.gender}</span>
+          <span>Raça: {selectedAnimalToShowDetails.race}</span>
         </S.AnimalInfoWrapper>
 
         <S.AnimalDescriptionWrapper>
           <span>Descrição</span>
-          <span>{animal.description}</span>
+          <span>{selectedAnimalToShowDetails.description}</span>
         </S.AnimalDescriptionWrapper>
       </S.ContentWrapper>
 

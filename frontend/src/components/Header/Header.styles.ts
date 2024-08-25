@@ -37,3 +37,8 @@ export const LogoWrapper = styled.div`
   height: 27px;
   width: 29px;
 `
+
+export const IconWrapper = styled.div`
+  height: 28px;
+  width: 28px;
+`

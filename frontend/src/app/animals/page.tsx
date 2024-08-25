@@ -9,13 +9,16 @@ import { DefaultDialog } from '@/components/DefaultDialog'
 
 import { mockAnimals } from '@/mocks/animals'
 import * as S from './styles'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
+import { AnimalsContext } from '@/contexts/animals'
 
+// TODO add loader to display while fetching animals
 export default function Page() {
+  const { availableAnimals, fetchAvailableAnimals } = useContext(AnimalsContext)
+
   useMemo(() => {
-    // TODO fix error localStorage not defined
-    localStorage.setItem('available-animals', JSON.stringify(mockAnimals))
-  }, [])
+    fetchAvailableAnimals()
+  }, [fetchAvailableAnimals])
 
   return (
     <S.Wrapper>
@@ -37,9 +40,9 @@ export default function Page() {
           </Dialog.Root>
         )}
       </S.TitleWrapper>
-      {mockAnimals.length ? (
+      {availableAnimals.length ? (
         <S.AnimalsListWrapper>
-          {mockAnimals.map((animal) => (
+          {availableAnimals.map((animal) => (
             <AnimalCard
               key={animal.id}
               animal={animal}
