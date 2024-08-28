@@ -3,13 +3,34 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+`
+
+export const Header = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+
+    background-color: ${theme.colors.gray[200]};
+
+    h1 {
+      color: ${theme.colors.white};
+      font-size: 1.5rem;
+    }
+  `}
+`
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 
-  height: 100%;
-
   padding: 1rem;
-
-  gap: 0.5rem;
+  height: 100%;
 
   footer {
     display: flex;

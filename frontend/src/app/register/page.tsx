@@ -15,32 +15,37 @@ export default function Page() {
 
   return (
     <S.Wrapper>
-      <S.RegisterForm onSubmit={handleSubmit}>
-        <S.RegisterFormInputsWrapper>
-          <label>
-            Nome
-            <input type="text" />
-          </label>
-          <label>
-            Email
-            <input type="email" />
-          </label>
-          <label>
-            Senha
-            <PasswordInput />
-          </label>
-          <label>
-            Confirme a senha
-            <PasswordInput />
-          </label>
-        </S.RegisterFormInputsWrapper>
-        <Button type="submit">Cadastrar</Button>
-      </S.RegisterForm>
-      <footer>
-        <span>
-          Já possui uma conta? <a href="/login">Faça login</a>
-        </span>
-      </footer>
+      <S.Header>
+        <h1>Cadastro</h1>
+      </S.Header>
+      <S.Content>
+        <S.RegisterForm onSubmit={handleSubmit}>
+          <S.RegisterFormInputsWrapper>
+            <label>
+              Nome
+              <input type="text" />
+            </label>
+            <label>
+              Email
+              <input type="email" />
+            </label>
+            <label>
+              Senha
+              <PasswordInput />
+            </label>
+            <label>
+              Confirme a senha
+              <PasswordInput />
+            </label>
+          </S.RegisterFormInputsWrapper>
+          <Button type="submit">Cadastrar</Button>
+        </S.RegisterForm>
+        <footer>
+          <span>
+            Já possui uma conta? <a href="/login">Faça login</a>
+          </span>
+        </footer>
+      </S.Content>
     </S.Wrapper>
   )
 }
