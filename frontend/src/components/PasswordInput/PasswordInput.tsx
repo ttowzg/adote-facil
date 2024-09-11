@@ -3,7 +3,12 @@ import { useState } from 'react'
 
 import * as S from './PasswordInput.styles'
 
-export function PasswordInput() {
+interface InputProps {
+  fieldName: 'password' | 'confirmPassword'
+  zodRegister: (fieldName: InputProps['fieldName']) => object
+}
+
+export function PasswordInput({ fieldName, zodRegister }: InputProps) {
   const [inputType, setInputType] = useState('password')
 
   const handleChangeInputType = () => {
@@ -12,7 +17,7 @@ export function PasswordInput() {
 
   return (
     <S.Wrapper>
-      <input type={inputType} />
+      <input type={inputType} {...zodRegister(fieldName)} />
       <button onClick={handleChangeInputType}>
         {inputType === 'password' ? <Eye /> : <EyeSlash />}
       </button>

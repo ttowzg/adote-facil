@@ -51,7 +51,6 @@ export const Content = styled.div`
 
   padding: 1rem;
   height: 100vh;
-  width: 100%;
 
   @media (min-width: 770px) {
     max-width: calc(100vw - 340px - 4rem);
@@ -75,7 +74,7 @@ export const RegisterForm = styled.form`
   }
 
   @media (min-width: 770px) {
-    margin-top: 6rem;
+    margin-top: 3rem;
     padding: 2rem;
   }
 
@@ -105,6 +104,11 @@ export const RegisterFormInputsWrapper = styled.div`
       flex-direction: column;
 
       gap: 0.5rem;
+
+      span {
+        font-size: 0.75rem;
+        color: ${theme.colors.red[700]};
+      }
     }
 
     input {
