@@ -6,12 +6,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { api } from '@/helpers/api'
 import { Button } from '@/components/Button'
 import { PasswordInput } from '@/components/PasswordInput'
 
 import * as S from './styles'
 import logo from '../../assets/logo-big.png'
+import { registerUser } from '@/api/register-user'
 
 const createUserFormSchema = z
   .object({
@@ -36,7 +36,7 @@ const createUserFormSchema = z
     path: ['confirmPassword'],
   })
 
-type CreateUserFormData = z.infer<typeof createUserFormSchema>
+export type CreateUserFormData = z.infer<typeof createUserFormSchema>
 
 export default function Page() {
   const router = useRouter()
@@ -50,16 +50,15 @@ export default function Page() {
   })
 
   const handleSubmitForm = async (data: CreateUserFormData) => {
-    // TODO tratar throw do axios
-    const response = await api.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/user`,
-      data,
-    )
+    const response = await registerUser(data)
 
-    // TODO redirect não está funcionando corretamente
     if (response.status !== 201) {
-      alert('Falha ao cadastrar! Por favor tente novamente!')
+      const message =
+        response.data.message ||
+        'Falha ao cadastrar! Por favor tente novamente!'
+      alert(message)
       router.push('/cadastro')
+      return
     }
 
     alert(
