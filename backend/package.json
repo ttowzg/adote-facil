@@ -3,7 +3,8 @@
   "scripts": {
     "migrate": "prisma migrate dev --name",
     "build": "swc src --out-dir dist --strip-leading-paths",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "dev": "npm run build && npm run start"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
