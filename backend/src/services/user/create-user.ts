@@ -34,7 +34,7 @@ export class CreateUserService {
     )
 
     if (userAlreadyExists) {
-      return Failure.create({ message: 'User email already exists' })
+      return Failure.create({ message: 'Email já cadastrado.' })
     }
 
     const hashedPassword = this.encrypter.encrypt(password)
