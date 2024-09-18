@@ -71,15 +71,18 @@ export const RegisterForm = styled.form`
 
   h1 {
     font-size: 1.5rem;
+    text-align: center;
   }
 
   @media (min-width: 770px) {
     margin-top: 3rem;
     padding: 2rem;
+
+    width: calc(100vw - 404px - 4rem);
   }
 
   @media (min-width: 1080px) {
-    max-width: calc(100vw - 550px);
+    width: calc(100vw - 544px - 4rem);
 
     h1 {
       font-size: 2rem;
