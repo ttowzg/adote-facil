@@ -3,12 +3,17 @@ import { useState } from 'react'
 
 import * as S from './PasswordInput.styles'
 
-interface InputProps {
-  fieldName: 'password' | 'confirmPassword'
-  zodRegister: (fieldName: InputProps['fieldName']) => object
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
+
+interface InputProps<T extends FieldValues> {
+  fieldName: Path<T>
+  zodRegister: UseFormRegister<T>
 }
 
-export function PasswordInput({ fieldName, zodRegister }: InputProps) {
+export function PasswordInput<T extends FieldValues>({
+  fieldName,
+  zodRegister,
+}: InputProps<T>) {
   const [inputType, setInputType] = useState('password')
 
   const handleChangeInputType = () => {
