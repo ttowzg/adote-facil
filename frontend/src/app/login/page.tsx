@@ -11,8 +11,9 @@ import { PasswordInput } from '@/components/PasswordInput'
 
 import * as S from './styles'
 import logo from '../../assets/logo-big.png'
+import { userLogin } from '@/api/user-login'
 
-const createUserFormSchema = z.object({
+const userLoginFormSchema = z.object({
   email: z
     .string()
     .min(1, { message: 'O email é obrigatório' })
@@ -23,9 +24,8 @@ const createUserFormSchema = z.object({
     .min(8, { message: 'A senha deve conter no mínimo 8 caracteres' }),
 })
 
-export type CreateUserFormData = z.infer<typeof createUserFormSchema>
+export type UserLoginFormData = z.infer<typeof userLoginFormSchema>
 
-// TODO implementar integracao com o login do backend
 export default function Page() {
   const router = useRouter()
 
@@ -33,24 +33,25 @@ export default function Page() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateUserFormData>({
-    resolver: zodResolver(createUserFormSchema),
+  } = useForm<UserLoginFormData>({
+    resolver: zodResolver(userLoginFormSchema),
   })
 
-  const handleSubmitForm = async (data: CreateUserFormData) => {
-    // const response = await registerUser(data)
-    // if (response.status !== 201) {
-    //   const message =
-    //     response.data.message ||
-    //     'Falha ao cadastrar! Por favor tente novamente!'
-    //   alert(message)
-    //   router.push('/cadastro')
-    //   return
-    // }
-    // alert(
-    //   'Cadastro efetuado com sucesso! Faça login para acessar nossa plataforma!',
-    // )
-    // router.push('/login')
+  const handleSubmitForm = async (data: UserLoginFormData) => {
+    const response = await userLogin(data)
+
+    if (response.status !== 201) {
+      const message =
+        response.data.message ||
+        'Falha ao cadastrar! Por favor tente novamente!'
+      alert(message)
+      router.push('/cadastro')
+      return
+    }
+
+    localStorage.setItem('token', response.data.token)
+
+    router.push('/animais')
   }
 
   return (
@@ -78,12 +79,12 @@ export default function Page() {
           </S.LoginFormInputsWrapper>
 
           <S.LoginFormButtonWrapper>
-            <Button type="submit">Cadastrar</Button>
+            <Button type="submit">Login</Button>
           </S.LoginFormButtonWrapper>
         </S.LoginForm>
         <S.LoginFormFooter>
           <span>
-            Já possui uma conta? <a href="/login">Faça login</a>
+            Ainda não tem uma conta? <a href="/cadastro">Cadastre-se</a>
           </span>
         </S.LoginFormFooter>
       </S.Content>
