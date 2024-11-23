@@ -41,11 +41,9 @@ export default function Page() {
     const response = await userLogin(data)
 
     if (response.status !== 201) {
-      const message =
-        response.data.message ||
-        'Falha ao cadastrar! Por favor tente novamente!'
+      const message = response.data.message || 'Email ou senha inválidos!'
       alert(message)
-      router.push('/cadastro')
+      router.push('/login')
       return
     }
 
