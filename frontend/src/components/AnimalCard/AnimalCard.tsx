@@ -4,8 +4,6 @@ import { Button } from '@/components/Button'
 import * as S from './AnimalCard.styles'
 
 import Link from 'next/link'
-import { useContext } from 'react'
-import { AnimalsContext } from '@/contexts/animals'
 
 interface AnimalCardProps {
   animal: {
@@ -23,12 +21,6 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { selectAnimalToShowDetails } = useContext(AnimalsContext)
-
-  const handleGoToAnimalDetails = () => {
-    // selectAnimalToShowDetails(animal.id)
-  }
-
   const { id, type, gender, race, images } = animal
 
   const animalImageBase64 = images[0].base64
@@ -60,8 +52,8 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
         ) : (
-          <Link href={`/animals/${id}`}>
-            <Button onClick={handleGoToAnimalDetails}>Saiba mais</Button>
+          <Link href={`/animais_disponiveis/${id}`}>
+            <Button>Saiba mais</Button>
           </Link>
         )}
       </S.Content>
