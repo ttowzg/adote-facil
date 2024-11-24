@@ -49,7 +49,7 @@ export default function Page() {
 
     localStorage.setItem('token', response.data.token)
 
-    router.push('/animais')
+    router.push('/animais_disponiveis')
   }
 
   return (
