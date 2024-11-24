@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -39,18 +39,30 @@ export const UserInfo = styled.div`
   }
 `
 
-export const MenuItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+interface MenuItemProps {
+  isActive?: boolean
+}
 
-  padding: 1rem;
+export const MenuItem = styled.div<MenuItemProps>`
+  ${({ isActive, theme }) => css`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
-  cursor: pointer;
+    padding: 1rem;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.gray[100]};
-  }
+    cursor: pointer;
+
+    ${isActive &&
+    `
+      color: ${theme.colors.green[300]};
+      background-color: ${theme.colors.gray[100]};
+    `}
+
+    &:hover {
+      background-color: ${theme.colors.gray[100]};
+    }
+  `}
 `
 
 export const PageContent = styled.div`
