@@ -25,18 +25,22 @@ export const AsideMenu = styled.aside`
 `
 
 export const UserInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
 
-  margin: 1rem 0;
+    margin: 1rem 0;
 
-  span {
-    font-size: 24px;
-    font-weight: 700;
-  }
+    color: ${theme.colors.white};
+
+    span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  `}
 `
 
 interface MenuItemProps {
@@ -53,11 +57,8 @@ export const MenuItem = styled.div<MenuItemProps>`
 
     cursor: pointer;
 
-    ${isActive &&
-    `
-      color: ${theme.colors.green[300]};
-      background-color: ${theme.colors.gray[100]};
-    `}
+    color: ${isActive ? theme.colors.green[300] : theme.colors.white};
+    background-color: ${isActive ? theme.colors.gray[100] : null};
 
     &:hover {
       background-color: ${theme.colors.gray[100]};
