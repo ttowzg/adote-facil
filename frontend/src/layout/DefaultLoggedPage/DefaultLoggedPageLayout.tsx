@@ -74,7 +74,7 @@ export function DefaultLoggedPageLayout({
         {menuItems.map((menuItem) => (
           <Link href={menuItem.route} key={menuItem.id}>
             <S.MenuItem
-              isActive={activeMenuItem === menuItem.id}
+              $isActive={activeMenuItem === menuItem.id}
               onClick={() => handleMenuItemClick(menuItem)}
             >
               {menuItem.icon}

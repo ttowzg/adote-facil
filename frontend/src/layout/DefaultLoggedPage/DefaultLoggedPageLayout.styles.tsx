@@ -44,11 +44,11 @@ export const UserInfo = styled.div`
 `
 
 interface MenuItemProps {
-  isActive?: boolean
+  $isActive?: boolean
 }
 
 export const MenuItem = styled.div<MenuItemProps>`
-  ${({ isActive, theme }) => css`
+  ${({ $isActive, theme }) => css`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -57,8 +57,8 @@ export const MenuItem = styled.div<MenuItemProps>`
 
     cursor: pointer;
 
-    color: ${isActive ? theme.colors.green[300] : theme.colors.white};
-    background-color: ${isActive ? theme.colors.gray[100] : null};
+    color: ${$isActive ? theme.colors.green[300] : theme.colors.white};
+    background-color: ${$isActive ? theme.colors.gray[100] : null};
 
     &:hover {
       background-color: ${theme.colors.gray[100]};
