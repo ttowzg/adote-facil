@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 export const AsideMenu = styled.aside`
   display: none;
   position: fixed;
-  height: 100vh;
 
   background-color: ${({ theme }) => theme.colors.gray[200]};
 
@@ -16,6 +15,7 @@ export const AsideMenu = styled.aside`
     display: flex;
     flex-direction: column;
 
+    height: 100vh;
     width: 300px;
   }
 
