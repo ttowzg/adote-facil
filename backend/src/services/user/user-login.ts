@@ -17,7 +17,14 @@ export namespace UserLoginDTO {
 
   export type Failure = { message: string }
 
-  export type Success = { token: string }
+  export type Success = {
+    user: {
+      id: string
+      email: string
+      name: string
+    }
+    token: string
+  }
 
   export type Result = Either<Failure, Success>
 }
@@ -50,7 +57,14 @@ export class UserLoginService {
       name: user.name,
     })
 
-    return Success.create({ token })
+    return Success.create({
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      },
+      token,
+    })
   }
 }
 

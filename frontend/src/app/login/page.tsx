@@ -13,6 +13,8 @@ import * as S from './styles'
 import logo from '../../assets/logo-big.png'
 import { userLogin } from '@/api/user-login'
 
+import { setCookie } from 'cookies-next'
+
 const userLoginFormSchema = z.object({
   email: z
     .string()
@@ -47,9 +49,16 @@ export default function Page() {
       return
     }
 
-    localStorage.setItem('token', response.data.token)
+    setCookie('token', response.data.token, {
+      httpOnly: false,
+      // TODO em um ambiente de produção isso deve ser true
+      secure: false,
+      path: '/',
+    })
 
-    router.push('/animais_disponiveis')
+    localStorage.setItem('user', JSON.stringify(response.data.user))
+
+    router.push('/area_logada/animais_disponiveis')
   }
 
   return (
