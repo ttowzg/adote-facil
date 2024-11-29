@@ -9,6 +9,7 @@ import {
   SignOut,
   User,
 } from '@phosphor-icons/react'
+import { getUserData } from '@/helpers/get-user-data'
 
 enum MenuItemsEnum {
   AVAILABLE_ANIMALS = 'AVAILABLE_ANIMALS',
@@ -60,6 +61,8 @@ export function DefaultLoggedPageLayout({
     MenuItemsEnum.AVAILABLE_ANIMALS,
   )
 
+  const userData = getUserData()
+
   const handleMenuItemClick = (menuItem: MenuItem) => {
     setActiveMenuItem(menuItem.id)
   }
@@ -69,7 +72,7 @@ export function DefaultLoggedPageLayout({
       <S.AsideMenu>
         <S.UserInfo>
           <User size={48} />
-          <span>Nome do usuário</span>
+          <span>{userData?.name}</span>
         </S.UserInfo>
         {menuItems.map((menuItem) => (
           <Link href={menuItem.route} key={menuItem.id}>
