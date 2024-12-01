@@ -9,14 +9,14 @@ import { DefaultDialog } from '@/components/DefaultDialog'
 
 import { mockAnimals } from '@/mocks/animals'
 import * as S from './styles'
-import { useContext, useMemo } from 'react'
+import { useContext, useEffect } from 'react'
 import { AnimalsContext } from '@/contexts/animals'
 
 // TODO add loader to display while fetching animals
 export default function Page() {
   const { availableAnimals, fetchAvailableAnimals } = useContext(AnimalsContext)
 
-  useMemo(() => {
+  useEffect(() => {
     fetchAvailableAnimals()
   }, [fetchAvailableAnimals])
 
