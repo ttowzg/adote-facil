@@ -30,25 +30,25 @@ const menuItems: MenuItem[] = [
     id: MenuItemsEnum.AVAILABLE_ANIMALS,
     label: 'Animais disponíveis para adoção',
     icon: <Cat size={24} />,
-    route: '/animais_disponiveis',
+    route: '/area_logada/animais_disponiveis',
   },
   {
     id: MenuItemsEnum.ADD_ANIMAL,
     label: 'Disponibilizar animal para adoção',
     icon: <PawPrint size={24} />,
-    route: '/disponibilizar_animal',
+    route: '/area_logada/disponibilizar_animal',
   },
   {
     id: MenuItemsEnum.MY_ANIMALS,
     label: 'Meus animais disponíveis para adoção',
     icon: <Barn size={24} />,
-    route: '/meus_animais',
+    route: '/area_logada/meus_animais',
   },
   {
     id: MenuItemsEnum.EDIT_USER_DATA,
     label: 'Editar dados pessoais',
     icon: <PencilSimple size={24} />,
-    route: '/editar_dados',
+    route: '/area_logada/editar_dados',
   },
 ]
 
