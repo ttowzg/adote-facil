@@ -2,7 +2,88 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  @media (min-width: 770px) {
+    flex-direction: row;
+  }
+`
+
+export const MobileHeader = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: ${theme.colors.gray[200]};
+
+    max-width: 100vw;
+    height: 3rem;
+
+    color: ${theme.colors.white};
+
+    padding: 0.5rem 1rem;
+
+    @media (min-width: 770px) {
+      display: none;
+    }
+  `}
+`
+
+interface MobileMenuProps {
+  $isOpen: boolean
+}
+
+export const MobileMenu = styled.aside<MobileMenuProps>`
+  ${({ $isOpen, theme }) => css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    display: ${$isOpen ? 'flex' : 'none'};
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: ${theme.colors.gray[200]};
+
+    @media (min-width: 770px) {
+      display: none;
+    }
+  `}
+`
+
+export const MobileHeaderIconWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${theme.colors.green[300]};
+    }
+  `}
+`
+
+export const MobileMenuIconWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 1rem;
+
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${theme.colors.green[300]};
+    }
+  `}
 `
 
 export const AsideMenu = styled.aside`
@@ -25,22 +106,23 @@ export const AsideMenu = styled.aside`
 `
 
 export const UserInfo = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  @media (min-width: 770px) {
     gap: 1rem;
     padding: 1rem;
 
     margin: 1rem 0;
 
-    color: ${theme.colors.white};
-
     span {
       font-size: 24px;
       font-weight: 700;
     }
-  `}
+  }
 `
 
 interface MenuItemProps {
@@ -67,7 +149,7 @@ export const MenuItem = styled.div<MenuItemProps>`
 `
 
 export const PageContent = styled.div`
-  width: 100%;
+  max-width: 100vw;
   padding: 2rem;
 
   @media (min-width: 770px) {
