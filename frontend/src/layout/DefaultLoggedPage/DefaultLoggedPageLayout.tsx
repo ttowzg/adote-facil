@@ -3,7 +3,7 @@
 import * as S from './DefaultLoggedPageLayout.styles'
 import { ArrowLeft, List, User } from '@phosphor-icons/react'
 import { getUserData } from '@/helpers/get-user-data'
-import { UserMenu } from '@/components/UserMenu/UserMenu'
+import { UserMenu } from '@/components/UserMenu'
 import { useState } from 'react'
 
 // BUG se o menu mobile estiver aberto, o conteúdo da página não é renderizado, portanto se a largura da tela aumentar e o menu mobile sumir, o conteúdo da página não aparece
