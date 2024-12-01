@@ -7,5 +7,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return DefaultLoggedPageLayout({ children })
+  return <DefaultLoggedPageLayout>{children}</DefaultLoggedPageLayout>
 }
