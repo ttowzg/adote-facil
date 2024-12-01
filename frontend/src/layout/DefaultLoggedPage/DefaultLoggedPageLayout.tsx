@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import Link from 'next/link'
 import * as S from './DefaultLoggedPageLayout.styles'
 import {
@@ -21,7 +21,7 @@ enum MenuItemsEnum {
 type MenuItem = {
   id: MenuItemsEnum
   label: string
-  icon: JSX.Element
+  icon: ReactElement
   route: string
 }
 
