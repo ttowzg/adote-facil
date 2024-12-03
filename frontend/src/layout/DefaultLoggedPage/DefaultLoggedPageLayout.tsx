@@ -19,7 +19,10 @@ export function DefaultLoggedPageLayout({
   const handleChangeOpenMobileMenu = () => {
     setMobileMenuIsOpen(!mobileMenuIsOpen)
   }
-
+  // TODO implementar o menu mobile igual tá no figma
+  // deixei aqui com o nome do usuário, mas tem que ter o botão de chat e o logo no header
+  // posso colocar o mesmo aside do desktop, com o nome do usuário, e deixo o botão de chat no header
+  // ou colocar o botão de chat no menu lateral, e o nome do usuário no header
   return (
     <S.Wrapper>
       <S.MobileHeader>
