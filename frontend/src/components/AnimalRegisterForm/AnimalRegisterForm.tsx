@@ -101,7 +101,7 @@ export function AnimalRegisterForm() {
 
           <S.FormRow>
             <S.AnimalPicturesInputWrapper>
-              <label>Fotos</label>
+              <label>Fotos (máximo 5)</label>
               <input
                 type="file"
                 id="animalPictures"
