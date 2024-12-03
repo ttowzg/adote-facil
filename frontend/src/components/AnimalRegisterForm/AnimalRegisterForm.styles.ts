@@ -47,6 +47,8 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  max-width: 500px;
 `
 
 export const FormRow = styled.div`
@@ -201,6 +203,8 @@ export const AnimalPicturesInput = styled.label<AnimalPicturesInputProps>`
     border: 1px solid
       ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
     border-radius: 6px;
+
+    cursor: pointer;
 
     div {
       display: flex;
