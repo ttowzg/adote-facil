@@ -2,7 +2,7 @@ import { animalTypesForSelect } from '@/constants/animal-types-for-select'
 import { DefaultSelect } from '../DefaultSelect'
 import * as S from './AnimalRegisterForm.styles'
 import { animalGenderForSelect } from '@/constants/animal-gender-for-select'
-import { Plus } from '@phosphor-icons/react'
+import { Plus, Trash } from '@phosphor-icons/react'
 import { useState } from 'react'
 
 import * as Dialog from '@radix-ui/react-dialog'
@@ -136,7 +136,7 @@ export function AnimalRegisterForm() {
                       type="button"
                       onClick={() => handleRemoveAnimalPicture(index)}
                     >
-                      Remover
+                      <Trash size={16} />
                     </button>
                   </S.AnimalPictureSwiperSlide>
                 ))}
