@@ -72,6 +72,28 @@ export const FormRow = styled.div`
   gap: 1rem;
 `
 
+export const AnimalNameInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.25rem;
+
+    > span::after {
+      content: '*';
+      color: ${({ theme }) => theme.colors.red[700]};
+    }
+
+    input {
+      padding: 0.5rem;
+    }
+  }
+`
+
 export const AnimalTypeInputWrapper = styled.div`
   display: flex;
   flex-direction: column;

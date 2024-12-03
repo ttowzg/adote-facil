@@ -58,6 +58,15 @@ export function AnimalRegisterForm() {
       <S.Form>
         <S.FormContent>
           <S.FormRow>
+            <S.AnimalNameInputWrapper>
+              <label>
+                <span>Nome</span>
+                <input type="text" />
+              </label>
+            </S.AnimalNameInputWrapper>
+          </S.FormRow>
+
+          <S.FormRow>
             <S.AnimalTypeInputWrapper>
               <span>Tipo</span>
               <DefaultSelect
