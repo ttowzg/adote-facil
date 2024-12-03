@@ -45,10 +45,22 @@ export const MaxAnimalPicturesWarningModalContent = styled(Dialog.Content)`
 
 export const Form = styled.form`
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  gap: 1rem;
   width: 100%;
   max-width: 500px;
+  height: 100%;
+  gap: 2rem;
+`
+
+export const FormContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+
+export const FormButton = styled.div`
+  display: flex;
 `
 
 export const FormRow = styled.div`

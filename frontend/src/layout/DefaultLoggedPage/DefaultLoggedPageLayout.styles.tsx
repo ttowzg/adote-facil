@@ -150,7 +150,7 @@ export const MenuItem = styled.div<MenuItemProps>`
 
 export const PageContent = styled.div`
   max-width: 100vw;
-  padding: 3rem 2rem;
+  padding: 2rem;
 
   @media (min-width: 770px) {
     width: calc(100vw - 300px);

@@ -3,9 +3,14 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
   box-sizing: border-box;
+  align-items: center;
+  gap: 1rem;
+
+  @media (min-width: 770px) {
+    height: calc(100vh - 4rem);
+  }
 `
 
 export const FormWrapper = styled.div`
