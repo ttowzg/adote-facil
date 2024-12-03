@@ -8,7 +8,7 @@ import {
   SignOut,
 } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { ReactElement, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import * as S from './UserMenu.styles'
 import { deleteCookie } from 'cookies-next'
 
@@ -57,6 +57,14 @@ export function UserMenu() {
   const [activeMenuItem, setActiveMenuItem] = useState<MenuItemsEnum>(
     MenuItemsEnum.AVAILABLE_ANIMALS,
   )
+
+  useEffect(() => {
+    const currentPath = window?.location?.pathname
+    const activeItem = menuItems.find((item) => item.route === currentPath)
+    if (activeItem) {
+      setActiveMenuItem(activeItem.id)
+    }
+  }, [setActiveMenuItem])
 
   const handleMenuItemClick = (menuItem: MenuItem) => {
     setActiveMenuItem(menuItem.id)
