@@ -43,7 +43,9 @@ export default function Page() {
     const response = await userLogin(data)
 
     if (response.status !== 201) {
-      const message = response.data.message || 'Email ou senha inválidos!'
+      const message =
+        response.data.message ||
+        'Erro ao logar, por favor tente novamente mais tarde!'
       alert(message)
       router.push('/login')
       return
