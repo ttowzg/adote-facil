@@ -218,11 +218,11 @@ export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
 `
 
 interface AnimalPicturesInputProps {
-  enabled: boolean
+  $enabled: boolean
 }
 
 export const AnimalPicturesInput = styled.label<AnimalPicturesInputProps>`
-  ${({ enabled, theme }) => css`
+  ${({ $enabled, theme }) => css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -233,9 +233,9 @@ export const AnimalPicturesInput = styled.label<AnimalPicturesInputProps>`
     width: 92px;
     height: 135px;
 
-    color: ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
+    color: ${$enabled ? theme.colors.green[300] : theme.colors.gray[300]};
     border: 1px solid
-      ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
+      ${$enabled ? theme.colors.green[300] : theme.colors.gray[300]};
     border-radius: 6px;
 
     cursor: pointer;
@@ -245,7 +245,7 @@ export const AnimalPicturesInput = styled.label<AnimalPicturesInputProps>`
       align-items: center;
       justify-content: center;
       border: 1px solid
-        ${enabled ? theme.colors.green[300] : theme.colors.gray[300]};
+        ${$enabled ? theme.colors.green[300] : theme.colors.gray[300]};
       border-radius: 100%;
 
       width: 32px;

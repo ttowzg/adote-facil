@@ -115,7 +115,7 @@ export function AnimalRegisterForm() {
                 <S.AnimalPictureSwiperSlide>
                   <S.AnimalPicturesInput
                     htmlFor="animalPictures"
-                    enabled={animalPictures.length < 5}
+                    $enabled={animalPictures.length < 5}
                   >
                     <div>
                       <Plus size={24} />
