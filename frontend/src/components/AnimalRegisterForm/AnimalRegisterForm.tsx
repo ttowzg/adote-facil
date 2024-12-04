@@ -44,6 +44,7 @@ export function AnimalRegisterForm() {
         onOpenChange={setMaxPicsWarningModalOpen}
       >
         <DefaultDialog>
+          <Dialog.DialogTitle>Atenção</Dialog.DialogTitle>
           <Dialog.Portal>
             <S.MaxAnimalPicturesWarningModalOverlay />
             <S.MaxAnimalPicturesWarningModalContent>
