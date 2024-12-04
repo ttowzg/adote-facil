@@ -73,39 +73,53 @@ export const FormRow = styled.div`
 `
 
 export const AnimalNameInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-  label {
+    label {
+      display: flex;
+      flex-direction: column;
+
+      gap: 0.25rem;
+
+      > span:first-child::after {
+        content: '*';
+        color: ${theme.colors.red[700]};
+      }
+
+      > span:last-child {
+        font-size: 0.75rem;
+        color: ${theme.colors.red[700]};
+      }
+
+      input {
+        padding: 0.5rem;
+      }
+    }
+  `}
+`
+
+export const AnimalTypeInputWrapper = styled.div`
+  ${({ theme }) => css`
     display: flex;
     flex-direction: column;
 
     gap: 0.25rem;
 
-    > span::after {
+    width: 100%;
+
+    > span:first-child::after {
       content: '*';
-      color: ${({ theme }) => theme.colors.red[700]};
+      color: ${theme.colors.red[700]};
     }
 
-    input {
-      padding: 0.5rem;
+    > span:last-child {
+      font-size: 0.75rem;
+      color: ${theme.colors.red[700]};
     }
-  }
-`
-
-export const AnimalTypeInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  gap: 0.25rem;
-
-  width: 100%;
-
-  > span::after {
-    content: '*';
-    color: ${({ theme }) => theme.colors.red[700]};
-  }
+  `}
 `
 
 export const AnimalGenderInputWrapper = styled.div`

@@ -4,14 +4,47 @@ import * as S from './AnimalRegisterForm.styles'
 import { animalGenderForSelect } from '@/constants/animal-gender-for-select'
 import { Plus, Trash } from '@phosphor-icons/react'
 import { useState } from 'react'
+import { z } from 'zod'
 
 import * as Dialog from '@radix-ui/react-dialog'
 import { DefaultDialog } from '../DefaultDialog'
 import { Button } from '../Button'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
+const animalRegisterFormSchema = z.object({
+  name: z.string().min(1, { message: 'O nome é obrigatório' }),
+  type: z.string().min(1, { message: 'O tipo é obrigatório' }),
+  gender: z.string().min(1, { message: 'O gênero é obrigatório' }),
+  race: z
+    .string()
+    .optional()
+    .transform((value) => (value === '' ? undefined : value)),
+  description: z
+    .string()
+    .optional()
+    .transform((value) => (value === '' ? undefined : value)),
+  pictures: z
+    .array(z.instanceof(File))
+    .min(1, 'Adicione ao menos uma foto do animal')
+    .max(5, { message: 'Você pode adicionar no máximo 5 fotos' }),
+})
+
+export type AnimalRegisterFormData = z.infer<typeof animalRegisterFormSchema>
+
+// TODO consertar mensagens de erro e layout dos campos obrigatórios
 export function AnimalRegisterForm() {
   const [animalPictures, setAnimalPictures] = useState<File[]>([])
   const [maxPicsWarningModalOpen, setMaxPicsWarningModalOpen] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<AnimalRegisterFormData>({
+    resolver: zodResolver(animalRegisterFormSchema),
+  })
 
   const handleAnimalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -25,7 +58,9 @@ export function AnimalRegisterForm() {
         return
       }
 
-      setAnimalPictures([...animalPictures, ...Array.from(e.target.files)])
+      const newPictures = [...animalPictures, ...uploadedFiles]
+      setAnimalPictures(newPictures)
+      setValue('pictures', newPictures) // Atualiza no react-hook-form
     }
   }
 
@@ -35,6 +70,11 @@ export function AnimalRegisterForm() {
     )
 
     setAnimalPictures(newAnimalPictures)
+    setValue('pictures', newAnimalPictures) // Atualiza no react-hook-form
+  }
+
+  const onSubmit = (data: AnimalRegisterFormData) => {
+    console.log(JSON.stringify(data))
   }
 
   return (
@@ -56,13 +96,14 @@ export function AnimalRegisterForm() {
           </Dialog.Portal>
         </DefaultDialog>
       </Dialog.Root>
-      <S.Form>
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormContent>
           <S.FormRow>
             <S.AnimalNameInputWrapper>
               <label>
                 <span>Nome</span>
-                <input type="text" />
+                <input type="text" {...register('name')} />
+                {errors.name && <span>{errors.name.message}</span>}
               </label>
             </S.AnimalNameInputWrapper>
           </S.FormRow>
@@ -73,20 +114,29 @@ export function AnimalRegisterForm() {
               <DefaultSelect
                 placeholder="Selecione um tipo"
                 items={animalTypesForSelect}
+                {...register('type')}
+                onValueChange={(value) => setValue('type', value)}
               />
+              {errors.type && <span>{errors.type.message}</span>}
             </S.AnimalTypeInputWrapper>
           </S.FormRow>
 
           <S.FormRow>
             <S.AnimalGenderInputWrapper>
               <span>Gênero</span>
-              <DefaultSelect placeholder="" items={animalGenderForSelect} />
+              <DefaultSelect
+                placeholder="Selecione um gênero"
+                items={animalGenderForSelect}
+                {...register('gender')}
+                onValueChange={(value) => setValue('gender', value)}
+              />
+              {errors.gender && <span>{errors.gender.message}</span>}
             </S.AnimalGenderInputWrapper>
 
             <S.AnimalRaceInputWrapper>
               <label>
                 Raça
-                <input type="text" />
+                <input type="text" {...register('race')} />
               </label>
             </S.AnimalRaceInputWrapper>
           </S.FormRow>
@@ -95,7 +145,7 @@ export function AnimalRegisterForm() {
             <S.AnimalDescriptionWrapper>
               <label>
                 Descrição
-                <textarea />
+                <textarea {...register('description')} />
               </label>
             </S.AnimalDescriptionWrapper>
           </S.FormRow>
@@ -112,6 +162,7 @@ export function AnimalRegisterForm() {
                 multiple
                 disabled={animalPictures.length >= 5}
               />
+              {errors.pictures && <span>{errors.pictures.message}</span>}
               <S.AddAnimalPicturesSwiper spaceBetween={10} slidesPerView={3}>
                 <S.AnimalPictureSwiperSlide>
                   <S.AnimalPicturesInput

@@ -11,12 +11,17 @@ interface SelectItem {
 interface DefaultSelectProps {
   placeholder: string
   items: SelectItem[]
+  onValueChange?: (value: string) => void
 }
 
 // TODO adicionar animações de estilo
-export function DefaultSelect({ placeholder, items }: DefaultSelectProps) {
+export function DefaultSelect({
+  placeholder,
+  items,
+  onValueChange,
+}: DefaultSelectProps) {
   return (
-    <Select.Root>
+    <Select.Root onValueChange={onValueChange}>
       <S.SelectTrigger>
         <S.SelectValue placeholder={placeholder} />
         <S.SelectIcon>
