@@ -1,6 +1,9 @@
 import { Router } from 'express'
 import { createUserControllerInstance } from './controllers/user/create-user.js'
 import { userLoginControllerInstance } from './controllers/user/user-login.js'
+import { upload } from './config/multer.js'
+import { createAnimalControllerInstance } from './controllers/animal/create-animal.js'
+import { userAuthMiddlewareInstance } from './middlewares/user-auth.js'
 
 const router = Router()
 
@@ -12,6 +15,13 @@ router.post(
 router.post(
   '/login',
   userLoginControllerInstance.handle.bind(userLoginControllerInstance),
+)
+
+router.post(
+  '/animal',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  upload.array('pictures', 5), // Middleware do multer para upload de até 5 arquivos
+  createAnimalControllerInstance.handle.bind(createAnimalControllerInstance),
 )
 
 export { router }

@@ -17,4 +17,31 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  animals Animal[]
+}
+
+model Animal {
+  id          String   @id @default(uuid())
+  userId      String
+  name        String
+  type        String
+  gender      String
+  race        String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  images AnimalImage[]
+}
+
+model AnimalImage {
+  id        String   @id @default(uuid())
+  animalId  String
+  imageData Bytes
+  createdAt DateTime @default(now())
+
+  animal Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
 }
