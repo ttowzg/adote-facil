@@ -51,7 +51,6 @@ const animalRegisterFormSchema = z.object({
 
 export type AnimalRegisterFormData = z.infer<typeof animalRegisterFormSchema>
 
-// TODO consertar mensagens de erro e layout dos campos obrigatórios
 export function AnimalRegisterForm() {
   const [animalPictures, setAnimalPictures] = useState<File[]>([])
   const [maxPicsWarningModalOpen, setMaxPicsWarningModalOpen] = useState(false)
@@ -138,29 +137,39 @@ export function AnimalRegisterForm() {
           <S.FormRow>
             <S.AnimalNameInputWrapper>
               <label>
-                <span>Nome</span>
+                <S.RequiredInputLabel $hasError={!!errors.name}>
+                  <span>Nome</span>
+                  {errors.name && <span>{errors.name.message}</span>}
+                </S.RequiredInputLabel>
+
                 <input type="text" {...register('name')} />
-                {errors.name && <span>{errors.name.message}</span>}
               </label>
             </S.AnimalNameInputWrapper>
           </S.FormRow>
 
           <S.FormRow>
             <S.AnimalTypeInputWrapper>
-              <span>Tipo</span>
+              <S.RequiredInputLabel $hasError={!!errors.type}>
+                <span>Tipo</span>
+                {errors.type && <span>{errors.type.message}</span>}
+              </S.RequiredInputLabel>
+
               <DefaultSelect
                 placeholder="Selecione um tipo"
                 items={animalTypesForSelect}
                 {...register('type')}
                 onValueChange={(value) => setValue('type', value as AnimalType)}
               />
-              {errors.type && <span>{errors.type.message}</span>}
             </S.AnimalTypeInputWrapper>
           </S.FormRow>
 
           <S.FormRow>
             <S.AnimalGenderInputWrapper>
-              <span>Gênero</span>
+              <S.RequiredInputLabel $hasError={!!errors.gender}>
+                <span>Gênero</span>
+                {errors.gender && <span>{errors.gender.message}</span>}
+              </S.RequiredInputLabel>
+
               <DefaultSelect
                 placeholder="Selecione um gênero"
                 items={animalGenderForSelect}
@@ -169,7 +178,6 @@ export function AnimalRegisterForm() {
                   setValue('gender', value as AnimalGender)
                 }
               />
-              {errors.gender && <span>{errors.gender.message}</span>}
             </S.AnimalGenderInputWrapper>
 
             <S.AnimalRaceInputWrapper>
@@ -191,7 +199,10 @@ export function AnimalRegisterForm() {
 
           <S.FormRow>
             <S.AnimalPicturesInputWrapper>
-              <label>Fotos (máximo 5)</label>
+              <S.RequiredInputLabel $hasError={!!errors.pictures}>
+                <span>Fotos</span>
+                {errors.pictures && <span>{errors.pictures.message}</span>}
+              </S.RequiredInputLabel>
               <input
                 type="file"
                 id="animalPictures"
@@ -201,7 +212,6 @@ export function AnimalRegisterForm() {
                 multiple
                 disabled={animalPictures.length >= 5}
               />
-              {errors.pictures && <span>{errors.pictures.message}</span>}
               <S.AddAnimalPicturesSwiper spaceBetween={10} slidesPerView={3}>
                 <S.AnimalPictureSwiperSlide>
                   <S.AnimalPicturesInput
