@@ -14,10 +14,27 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
 import { animalRegister } from '@/api/register-animal'
 
+enum AnimalType {
+  CACHORRO = 'cachorro',
+  COELHO = 'coelho',
+  GATO = 'gato',
+  HAMSTER = 'hamster',
+  PASSARO = 'passaro',
+  PEIXE = 'peixe',
+  OUTRO = 'outro',
+}
+
+enum AnimalGender {
+  MACHO = 'macho',
+  FEMEA = 'femea',
+}
+
 const animalRegisterFormSchema = z.object({
   name: z.string().min(1, { message: 'O nome é obrigatório' }),
-  type: z.string().min(1, { message: 'O tipo é obrigatório' }),
-  gender: z.string().min(1, { message: 'O gênero é obrigatório' }),
+  type: z.nativeEnum(AnimalType, { required_error: 'O tipo é obrigatório' }),
+  gender: z.nativeEnum(AnimalGender, {
+    required_error: 'O gênero é obrigatório',
+  }),
   race: z
     .string()
     .optional()
@@ -135,7 +152,7 @@ export function AnimalRegisterForm() {
                 placeholder="Selecione um tipo"
                 items={animalTypesForSelect}
                 {...register('type')}
-                onValueChange={(value) => setValue('type', value)}
+                onValueChange={(value) => setValue('type', value as AnimalType)}
               />
               {errors.type && <span>{errors.type.message}</span>}
             </S.AnimalTypeInputWrapper>
@@ -148,7 +165,9 @@ export function AnimalRegisterForm() {
                 placeholder="Selecione um gênero"
                 items={animalGenderForSelect}
                 {...register('gender')}
-                onValueChange={(value) => setValue('gender', value)}
+                onValueChange={(value) =>
+                  setValue('gender', value as AnimalGender)
+                }
               />
               {errors.gender && <span>{errors.gender.message}</span>}
             </S.AnimalGenderInputWrapper>
