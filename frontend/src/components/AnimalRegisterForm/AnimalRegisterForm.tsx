@@ -11,6 +11,8 @@ import { DefaultDialog } from '../DefaultDialog'
 import { Button } from '../Button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { getCookie } from 'cookies-next'
+import { animalRegister } from '@/api/register-animal'
 
 const animalRegisterFormSchema = z.object({
   name: z.string().min(1, { message: 'O nome é obrigatório' }),
@@ -73,8 +75,26 @@ export function AnimalRegisterForm() {
     setValue('pictures', newAnimalPictures) // Atualiza no react-hook-form
   }
 
-  const onSubmit = (data: AnimalRegisterFormData) => {
-    console.log(JSON.stringify(data))
+  const onSubmit = async (data: AnimalRegisterFormData) => {
+    try {
+      const token = getCookie('token')
+
+      const response = await animalRegister(data, token)
+
+      if (response.status === 201) {
+        alert('Animal cadastrado com sucesso!')
+        window.location.href = '/area_logada/meus_animais'
+      } else {
+        alert(
+          response.data.message ||
+            'Ocorreu um erro ao tentar registrar o animal.',
+        )
+      }
+    } catch (err) {
+      const error = err as Error
+      console.error('Erro no registro do animal:', error)
+      alert(error.message || 'Ocorreu um erro ao tentar registrar o animal.')
+    }
   }
 
   return (
