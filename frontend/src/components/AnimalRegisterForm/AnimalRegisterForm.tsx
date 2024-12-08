@@ -62,6 +62,7 @@ export function AnimalRegisterForm() {
     setValue,
   } = useForm<AnimalRegisterFormData>({
     resolver: zodResolver(animalRegisterFormSchema),
+    defaultValues: { pictures: [] },
   })
 
   const handleAnimalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
