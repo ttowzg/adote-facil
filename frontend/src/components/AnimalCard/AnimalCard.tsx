@@ -31,7 +31,7 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
         <Image
           src={`data:image/jpeg;base64,${animalImageBase64}`}
           alt="Animal"
-          layout="fill"
+          fill={true}
         />
       </S.ImageWrapper>
       <S.Content>
