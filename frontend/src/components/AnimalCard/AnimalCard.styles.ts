@@ -24,6 +24,10 @@ export const ImageWrapper = styled.div`
 
   min-width: 9rem;
   height: 10.5rem;
+
+  img {
+    object-fit: cover;
+  }
 `
 
 export const Content = styled.div`
