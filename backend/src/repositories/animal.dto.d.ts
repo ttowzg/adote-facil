@@ -12,3 +12,8 @@ export namespace CreateAnimalRepositoryDTO {
 
   export type Result = Animal
 }
+
+export namespace FindAllAnimalsRepositoryDTO {
+  export type Params = { userId: string }
+  export type Result = Animal[]
+}
