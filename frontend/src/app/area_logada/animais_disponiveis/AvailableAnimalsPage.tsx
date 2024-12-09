@@ -9,16 +9,30 @@ import { DefaultDialog } from '@/components/DefaultDialog'
 
 import { mockAnimals } from '@/mocks/animals'
 import * as S from './AvailableAnimalsPage.styles'
-import { useContext, useEffect } from 'react'
-import { AnimalsContext } from '@/contexts/animals'
+import { useEffect, useState } from 'react'
+import { Animal } from '@/@types/animal'
+import { getCookie } from 'cookies-next'
+import { getAvailableAnimals } from '@/api/get-available-animals'
 
 // TODO add loader to display while fetching animals
 export default function AvailableAnimalsPage() {
-  const { availableAnimals, fetchAvailableAnimals } = useContext(AnimalsContext)
+  const [availableAnimals, setAvailableAnimals] = useState<Animal[]>([])
 
   useEffect(() => {
+    const fetchAvailableAnimals = async () => {
+      const token = getCookie('token')
+
+      const response = await getAvailableAnimals(token || '')
+
+      console.log({ response })
+
+      if (response.status === 200) {
+        setAvailableAnimals(response.data.animals)
+      }
+    }
+
     fetchAvailableAnimals()
-  }, [fetchAvailableAnimals])
+  }, [])
 
   return (
     <S.Wrapper>
@@ -42,13 +56,6 @@ export default function AvailableAnimalsPage() {
       </S.TitleWrapper>
       {availableAnimals.length ? (
         <S.AnimalsListWrapper>
-          {availableAnimals.map((animal) => (
-            <AnimalCard
-              key={animal.id}
-              animal={animal}
-              listType="animals-available-to-adopt"
-            />
-          ))}
           {availableAnimals.map((animal) => (
             <AnimalCard
               key={animal.id}

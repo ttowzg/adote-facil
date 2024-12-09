@@ -23,7 +23,7 @@ interface AnimalCardProps {
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
   const { id, type, gender, race, images } = animal
 
-  const animalImageBase64 = images[0].base64
+  const animalImageBase64 = images[0]
 
   return (
     <S.Wrapper>
@@ -52,7 +52,7 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
         ) : (
-          <Link href={`/animais_disponiveis/${id}`}>
+          <Link href={`/area_logada/animais_disponiveis/${id}`}>
             <Button>Saiba mais</Button>
           </Link>
         )}
