@@ -106,23 +106,27 @@ export const AsideMenu = styled.aside`
 `
 
 export const UserInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  gap: 0.5rem;
+    gap: 0.5rem;
 
-  @media (min-width: 770px) {
-    gap: 1rem;
-    padding: 1rem;
+    color: ${theme.colors.white};
 
-    margin: 1rem 0;
+    @media (min-width: 770px) {
+      gap: 1rem;
+      padding: 1rem;
 
-    span {
-      font-size: 24px;
-      font-weight: 700;
+      margin: 1rem 0;
+
+      span {
+        font-size: 24px;
+        font-weight: 700;
+      }
     }
-  }
+  `}
 `
 
 interface MenuItemProps {
