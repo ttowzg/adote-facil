@@ -10,6 +10,15 @@ export const DialogOverlay = styled(Dialog.Overlay)`
   `}
 `
 
+export const DialogClose = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 export const DialogContent = styled(Dialog.Content)`
   ${({ theme }) => css`
     position: fixed;
@@ -21,6 +30,6 @@ export const DialogContent = styled(Dialog.Content)`
 
     border-radius: 6px;
 
-    padding: 1.5rem;
+    padding: 1rem;
   `}
 `
