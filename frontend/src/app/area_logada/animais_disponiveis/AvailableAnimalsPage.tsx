@@ -7,16 +7,15 @@ import { AnimalCard } from '@/components/AnimalCard'
 import { EmptyAnimals } from '@/components/EmptyAnimals'
 import { DefaultDialog } from '@/components/DefaultDialog'
 
-import { mockAnimals } from '@/mocks/animals'
 import * as S from './AvailableAnimalsPage.styles'
-import { useEffect, useState } from 'react'
-import { Animal } from '@/@types/animal'
+import { useContext, useEffect } from 'react'
 import { getCookie } from 'cookies-next'
 import { getAvailableAnimals } from '@/api/get-available-animals'
+import { AnimalsContext } from '@/contexts/animals'
 
 // TODO add loader to display while fetching animals
 export default function AvailableAnimalsPage() {
-  const [availableAnimals, setAvailableAnimals] = useState<Animal[]>([])
+  const { availableAnimals, setAvailableAnimals } = useContext(AnimalsContext)
 
   useEffect(() => {
     const fetchAvailableAnimals = async () => {
@@ -24,21 +23,19 @@ export default function AvailableAnimalsPage() {
 
       const response = await getAvailableAnimals(token || '')
 
-      console.log({ response })
-
       if (response.status === 200) {
         setAvailableAnimals(response.data.animals)
       }
     }
 
     fetchAvailableAnimals()
-  }, [])
+  }, [setAvailableAnimals])
 
   return (
     <S.Wrapper>
       <S.TitleWrapper>
         <h1>Animais disponíveis para adoção</h1>
-        {!!mockAnimals.length && (
+        {!!availableAnimals.length && (
           <Dialog.Root>
             <Dialog.Trigger asChild>
               <Button>Filtrar</Button>
