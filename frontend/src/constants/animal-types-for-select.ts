@@ -5,4 +5,5 @@ export const animalTypesForSelect = [
   { value: 'hamster', placeholder: 'Hamster' },
   { value: 'passaro', placeholder: 'Pássaro' },
   { value: 'peixe', placeholder: 'Peixe' },
+  { value: 'outro', placeholder: 'Outro' },
 ]
