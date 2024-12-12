@@ -1,12 +1,29 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
   height: calc(100vh - 5rem);
+`
+
+export const GoBackButtonWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+
+    a {
+      color: ${theme.colors.white};
+    }
+
+    a:hover {
+      transition: color 0.5s;
+      color: ${theme.colors.green[300]};
+    }
+  `}
 `
 
 export const ContentWrapper = styled.div`
@@ -15,6 +32,9 @@ export const ContentWrapper = styled.div`
   align-items: center;
 
   gap: 1rem;
+
+  width: 100%;
+  max-width: 600px;
 `
 
 export const AnimalPicturesSwiper = styled(Swiper)`
@@ -57,7 +77,7 @@ export const AnimalInfoWrapper = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 
-  align-items: center;
+  align-items: flex-start;
 
   font-size: 1.5rem;
 `
@@ -65,5 +85,6 @@ export const AnimalInfoWrapper = styled.div`
 export const AnimalDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.25rem;
 `
