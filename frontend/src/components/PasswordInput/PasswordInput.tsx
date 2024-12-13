@@ -23,7 +23,7 @@ export function PasswordInput<T extends FieldValues>({
   return (
     <S.Wrapper>
       <input type={inputType} {...zodRegister(fieldName)} />
-      <button onClick={handleChangeInputType}>
+      <button type="button" onClick={handleChangeInputType}>
         {inputType === 'password' ? <Eye /> : <EyeSlash />}
       </button>
     </S.Wrapper>
