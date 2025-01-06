@@ -4,10 +4,6 @@ import {
   AnimalRepository,
   animalRepositoryInstance,
 } from '../../repositories/animal.js'
-import {
-  AnimalImageRepository,
-  animalImageRepositoryInstance,
-} from '../../repositories/animal-image.js'
 
 namespace GetAvailableAnimalsDTO {
   export type Params = {
@@ -16,16 +12,13 @@ namespace GetAvailableAnimalsDTO {
 
   export type Failure = { message: string }
 
-  export type Success = { animals: Animal[] }
+  export type Success = { animals: Array<Animal & { images: string[] }> }
 
   export type Result = Either<Failure, Success>
 }
 
 export class GetAvailableAnimalsService {
-  constructor(
-    private readonly animalRepository: AnimalRepository,
-    private readonly animalImageRepository: AnimalImageRepository,
-  ) {}
+  constructor(private readonly animalRepository: AnimalRepository) {}
 
   async execute(
     params: GetAvailableAnimalsDTO.Params,
@@ -48,7 +41,4 @@ export class GetAvailableAnimalsService {
 }
 
 export const getAvailableAnimalsServiceInstance =
-  new GetAvailableAnimalsService(
-    animalRepositoryInstance,
-    animalImageRepositoryInstance,
-  )
+  new GetAvailableAnimalsService(animalRepositoryInstance)
