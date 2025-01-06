@@ -25,13 +25,13 @@ export class GetAvailableAnimalsService {
   ): Promise<GetAvailableAnimalsDTO.Result> {
     const { userId } = params
 
-    const animals = await this.animalRepository.findAll({ userId })
+    const animals = await this.animalRepository.findAllNotFromUser(userId)
 
     const formattedAnimals = animals.map((animal) => {
       return {
         ...animal,
         images: animal.images.map((image) => {
-          return Buffer.from(image.imageData).toString('base64')
+          return image.imageData.toString('base64')
         }),
       }
     })
