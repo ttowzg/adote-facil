@@ -3,13 +3,7 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
-  padding: 2rem 1rem;
 `
 
 export const TitleWrapper = styled.div`
@@ -33,12 +27,40 @@ export const TitleWrapper = styled.div`
       font-size: 0.75rem;
       font-weight: 700;
     }
+
+    @media (min-width: 1000px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        height: 2rem;
+        width: 8rem;
+
+        font-size: 1rem;
+      }
+    }
   `}
 `
 
 export const AnimalsListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
 
   gap: 1rem;
+
+  @media (min-width: 770px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1700px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `

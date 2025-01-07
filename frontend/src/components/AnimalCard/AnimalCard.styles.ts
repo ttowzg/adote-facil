@@ -79,5 +79,15 @@ export const MyAnimalsButton = styled.button<MyAnimalsButtonProps>`
       ${type === 'edit' ? theme.colors.green[300] : theme.colors.red[700]};
 
     border-radius: 6px;
+
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${type === 'edit'
+        ? theme.colors.green[300]
+        : theme.colors.red[700]};
+      color: ${theme.colors.white};
+    }
   `}
 `
