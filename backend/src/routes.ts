@@ -5,6 +5,7 @@ import { upload } from './config/multer.js'
 import { createAnimalControllerInstance } from './controllers/animal/create-animal.js'
 import { userAuthMiddlewareInstance } from './middlewares/user-auth.js'
 import { getAvailableAnimalsControllerInstance } from './controllers/animal/get-available.js'
+import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-animals.js'
 
 const router = Router()
 
@@ -30,6 +31,14 @@ router.get(
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   getAvailableAnimalsControllerInstance.handle.bind(
     getAvailableAnimalsControllerInstance,
+  ),
+)
+
+router.get(
+  '/animals/user',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  getUserAnimalsControllerInstance.handle.bind(
+    getUserAnimalsControllerInstance,
   ),
 )
 
