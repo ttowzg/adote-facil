@@ -14,7 +14,7 @@ import { getAvailableAnimals } from '@/api/get-available-animals'
 import { AnimalsContext } from '@/contexts/animals'
 
 // TODO add loader to display while fetching animals
-export default function AvailableAnimalsPage() {
+export function AvailableAnimalsPage() {
   const { availableAnimals, setAvailableAnimals } = useContext(AnimalsContext)
 
   useEffect(() => {

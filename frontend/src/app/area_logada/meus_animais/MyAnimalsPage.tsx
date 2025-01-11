@@ -8,7 +8,7 @@ import { AnimalsContext } from '@/contexts/animals'
 import { getCookie } from 'cookies-next'
 import { getUserAnimals } from '@/api/get-user-animals'
 
-export default function MyAnimalsPage() {
+export function MyAnimalsPage() {
   const { userAnimals, setUserAnimals } = useContext(AnimalsContext)
 
   useEffect(() => {

@@ -3,7 +3,7 @@
 import * as S from './RegisterAnimalPage.styles'
 import { AnimalRegisterForm } from '@/components/AnimalRegisterForm'
 
-export default function RegisterAnimalPage() {
+export function RegisterAnimalPage() {
   return (
     <S.Wrapper>
       <S.TitleWrapper>
