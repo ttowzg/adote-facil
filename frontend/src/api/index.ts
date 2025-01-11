@@ -9,7 +9,7 @@ export async function makeRequest({
   headers,
 }: {
   url: string
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
   data?: object
   headers?: object
 }) {
