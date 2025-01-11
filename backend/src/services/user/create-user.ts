@@ -2,7 +2,7 @@ import { User } from '@prisma/client'
 import {
   UserRepository,
   userRepositoryInstance,
-} from '../../repositories/user/index.js'
+} from '../../repositories/user.js'
 import { Encrypter, encrypterInstance } from '../../providers/encrypter.js'
 import { Either, Failure, Success } from '../../utils/either.js'
 

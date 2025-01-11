@@ -6,12 +6,20 @@ import { createAnimalControllerInstance } from './controllers/animal/create-anim
 import { userAuthMiddlewareInstance } from './middlewares/user-auth.js'
 import { getAvailableAnimalsControllerInstance } from './controllers/animal/get-available.js'
 import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-animals.js'
+import { updateUserControllerInstance } from './controllers/user/update-user.js'
 
 const router = Router()
 
+// TODO trocar rotas para plural
 router.post(
   '/user',
   createUserControllerInstance.handle.bind(createUserControllerInstance),
+)
+
+router.patch(
+  '/user',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  updateUserControllerInstance.handle.bind(updateUserControllerInstance),
 )
 
 router.post(

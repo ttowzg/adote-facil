@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import { prisma } from '../../database.js'
-import { CreateUserRepositoryDTO } from './dto.js'
+import { prisma } from '../database.js'
+import { CreateUserRepositoryDTO, UpdateUserRepositoryDTO } from './user.dto.js'
 
 export class UserRepository {
   constructor(private readonly repository: PrismaClient) {}
@@ -9,6 +9,17 @@ export class UserRepository {
     params: CreateUserRepositoryDTO.Params,
   ): Promise<CreateUserRepositoryDTO.Result> {
     return this.repository.user.create({ data: params })
+  }
+
+  async update(params: UpdateUserRepositoryDTO.Params) {
+    return this.repository.user.update({
+      where: { id: params.id },
+      data: params.data,
+    })
+  }
+
+  async findById(id: string) {
+    return this.repository.user.findUnique({ where: { id } })
   }
 
   async findByEmail(email: string) {
