@@ -1,15 +1,33 @@
 import styled, { css } from 'styled-components'
 
-export const Button = styled.button`
-  ${({ theme }) => css`
+export type ButtonStyleTypes = 'green-filled' | 'green-outlined'
+
+interface ButtonProps {
+  $buttonStyle: ButtonStyleTypes
+}
+
+const buttonStyles = {
+  'green-filled': css`
+    background-color: ${({ theme }) => theme.colors.green[300]};
+    color: ${({ theme }) => theme.colors.white};
+    border-color: transparent;
+  `,
+  'green-outlined': css`
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.green[300]};
+    border-color: ${({ theme }) => theme.colors.green[300]};
+  `,
+}
+
+export const Button = styled.button<ButtonProps>`
+  ${({ $buttonStyle }) => css`
     height: 3rem;
     width: 100%;
     border-radius: 6px;
 
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.green[300]};
+    border: 1px solid;
 
-    border: none;
+    ${buttonStyles[$buttonStyle]}
 
     cursor: pointer;
 
