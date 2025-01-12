@@ -78,6 +78,8 @@ export function UpdateUserInfoForm() {
       } else {
         alert(response.data.message || 'Ocorreu um erro ao editar os dados.')
       }
+
+      window.location.reload()
     } catch (err) {
       const error = err as Error
       console.error('Erro na edição de dados do usuário:', error)
