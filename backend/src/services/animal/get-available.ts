@@ -25,7 +25,8 @@ export class GetAvailableAnimalsService {
   ): Promise<GetAvailableAnimalsDTO.Result> {
     const { userId } = params
 
-    const animals = await this.animalRepository.findAllNotFromUser(userId)
+    const animals =
+      await this.animalRepository.findAllAvailableNotFromUser(userId)
 
     const formattedAnimals = animals.map((animal) => {
       return {

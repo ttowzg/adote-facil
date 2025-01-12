@@ -11,7 +11,7 @@ export class AnimalRepository {
     return this.repository.animal.create({ data: params })
   }
 
-  async findAllNotFromUser(userId: string) {
+  async findAllAvailableNotFromUser(userId: string) {
     return this.repository.animal.findMany({
       where: { userId: { not: userId } },
       include: { images: true },
