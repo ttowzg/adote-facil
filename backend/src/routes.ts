@@ -7,6 +7,7 @@ import { userAuthMiddlewareInstance } from './middlewares/user-auth.js'
 import { getAvailableAnimalsControllerInstance } from './controllers/animal/get-available.js'
 import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-animals.js'
 import { updateUserControllerInstance } from './controllers/user/update-user.js'
+import { updateAnimalStatusControllerInstance } from './controllers/animal/update-animal-status.js'
 
 const router = Router()
 
@@ -32,6 +33,14 @@ router.post(
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   upload.array('pictures', 5), // Middleware do multer para upload de até 5 arquivos
   createAnimalControllerInstance.handle.bind(createAnimalControllerInstance),
+)
+
+router.patch(
+  '/animal/:id',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  updateAnimalStatusControllerInstance.handle.bind(
+    updateAnimalStatusControllerInstance,
+  ),
 )
 
 router.get(
