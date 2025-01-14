@@ -61,11 +61,11 @@ export const MyAnimalsButtonsWrapper = styled.div`
 `
 
 interface MyAnimalsButtonProps {
-  type: 'edit' | 'delete'
+  $buttonType: 'edit' | 'delete'
 }
 
 export const MyAnimalsButton = styled.button<MyAnimalsButtonProps>`
-  ${({ theme, type }) => css`
+  ${({ theme, $buttonType }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,9 +74,13 @@ export const MyAnimalsButton = styled.button<MyAnimalsButtonProps>`
 
     background: none;
 
-    color: ${type === 'edit' ? theme.colors.green[300] : theme.colors.red[700]};
+    color: ${$buttonType === 'edit'
+      ? theme.colors.green[300]
+      : theme.colors.red[700]};
     border: 1px solid
-      ${type === 'edit' ? theme.colors.green[300] : theme.colors.red[700]};
+      ${$buttonType === 'edit'
+        ? theme.colors.green[300]
+        : theme.colors.red[700]};
 
     border-radius: 6px;
 
@@ -84,7 +88,7 @@ export const MyAnimalsButton = styled.button<MyAnimalsButtonProps>`
     cursor: pointer;
 
     &:hover {
-      background-color: ${type === 'edit'
+      background-color: ${$buttonType === 'edit'
         ? theme.colors.green[300]
         : theme.colors.red[700]};
       color: ${theme.colors.white};

@@ -4,6 +4,9 @@ import { Button } from '@/components/Button'
 import * as S from './AnimalCard.styles'
 
 import Link from 'next/link'
+import { AnimalStatus } from '@/enums/animal-status'
+import { updateAnimalStatus } from '@/api/update-animal-status'
+import { getCookie } from 'cookies-next'
 
 interface AnimalCardProps {
   animal: {
@@ -25,6 +28,34 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
 
   const animalImageBase64 = images[0]
 
+  const handleConfirmAnimalAdoption = async () => {
+    try {
+      const token = getCookie('token')
+
+      const response = await updateAnimalStatus({
+        animalId: id,
+        data: { status: AnimalStatus.ADOPTED },
+        token: token || '',
+      })
+
+      if (response.status === 200) {
+        alert('Confirmada a adoção do animal!')
+        window.location.href = '/area_logada/meus_animais'
+      } else {
+        alert(
+          response.data.message ||
+            'Ocorreu um erro ao confirmar a adoção do animal.',
+        )
+      }
+    } catch (err) {
+      const error = err as Error
+      console.error('Erro na confirmação de adoção do animal:', error)
+      alert(
+        error.message || 'Ocorreu um erro na confirmação de adoção do animal.',
+      )
+    }
+  }
+
   return (
     <S.Wrapper>
       <S.ImageWrapper>
@@ -42,11 +73,13 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
         </S.AnimalInfo>
         {listType === 'my-animals' ? (
           <S.MyAnimalsButtonsWrapper>
-            <Button>Confirmar adoção</Button>
-            <S.MyAnimalsButton type="edit">
+            <Button type="button" onClick={handleConfirmAnimalAdoption}>
+              Confirmar adoção
+            </Button>
+            <S.MyAnimalsButton type="button" $buttonType="edit">
               <Pencil size={24} />
             </S.MyAnimalsButton>
-            <S.MyAnimalsButton type="delete">
+            <S.MyAnimalsButton type="button" $buttonType="delete">
               <Trash size={24} />
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
