@@ -56,6 +56,29 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
     }
   }
 
+  const handleRemoveAnimal = async () => {
+    try {
+      const token = getCookie('token')
+
+      const response = await updateAnimalStatus({
+        animalId: id,
+        data: { status: AnimalStatus.REMOVED },
+        token: token || '',
+      })
+
+      if (response.status === 200) {
+        alert('Animal removido com sucesso!')
+        window.location.href = '/area_logada/meus_animais'
+      } else {
+        alert(response.data.message || 'Ocorreu um erro ao remover o animal.')
+      }
+    } catch (err) {
+      const error = err as Error
+      console.error('Erro na remoção do animal:', error)
+      alert(error.message || 'Ocorreu um erro na remoção do animal.')
+    }
+  }
+
   return (
     <S.Wrapper>
       <S.ImageWrapper>
@@ -79,7 +102,11 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             <S.MyAnimalsButton type="button" $buttonType="edit">
               <Pencil size={24} />
             </S.MyAnimalsButton>
-            <S.MyAnimalsButton type="button" $buttonType="delete">
+            <S.MyAnimalsButton
+              type="button"
+              $buttonType="delete"
+              onClick={handleRemoveAnimal}
+            >
               <Trash size={24} />
             </S.MyAnimalsButton>
           </S.MyAnimalsButtonsWrapper>
