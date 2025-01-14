@@ -62,7 +62,7 @@ export function AvailableAnimalsPage() {
           ))}
         </S.AnimalsListWrapper>
       ) : (
-        <EmptyAnimals />
+        <EmptyAnimals page="animals-available-to-adopt" />
       )}
     </S.Wrapper>
   )

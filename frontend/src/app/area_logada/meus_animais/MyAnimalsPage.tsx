@@ -37,7 +37,7 @@ export function MyAnimalsPage() {
           ))}
         </S.AnimalsListWrapper>
       ) : (
-        <EmptyAnimals />
+        <EmptyAnimals page="my-animals" />
       )}
     </S.Wrapper>
   )
