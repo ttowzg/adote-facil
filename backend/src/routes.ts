@@ -14,12 +14,12 @@ const router = Router()
 
 // TODO trocar rotas para plural
 router.post(
-  '/user',
+  '/users',
   createUserControllerInstance.handle.bind(createUserControllerInstance),
 )
 
 router.patch(
-  '/user',
+  '/users',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   updateUserControllerInstance.handle.bind(updateUserControllerInstance),
 )
@@ -38,14 +38,14 @@ router.post(
 )
 
 router.post(
-  '/animal',
+  '/animals',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   upload.array('pictures', 5), // Middleware do multer para upload de até 5 arquivos
   createAnimalControllerInstance.handle.bind(createAnimalControllerInstance),
 )
 
 router.patch(
-  '/animal/:id',
+  '/animals/:id',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   updateAnimalStatusControllerInstance.handle.bind(
     updateAnimalStatusControllerInstance,

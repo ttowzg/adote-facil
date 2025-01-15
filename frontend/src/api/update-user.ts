@@ -3,7 +3,7 @@ import { makeRequest } from '.'
 
 export async function updateUser(data: UpdateUserInfoFormData, token?: string) {
   return makeRequest({
-    url: `${process.env.NEXT_PUBLIC_API_URL}/user`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/users`,
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${token}`,
