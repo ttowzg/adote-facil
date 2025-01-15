@@ -8,6 +8,7 @@ import { getAvailableAnimalsControllerInstance } from './controllers/animal/get-
 import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-animals.js'
 import { updateUserControllerInstance } from './controllers/user/update-user.js'
 import { updateAnimalStatusControllerInstance } from './controllers/animal/update-animal-status.js'
+import { createUserMessageControllerInstance } from './controllers/user-message/create-user-message.js'
 
 const router = Router()
 
@@ -21,6 +22,14 @@ router.patch(
   '/user',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   updateUserControllerInstance.handle.bind(updateUserControllerInstance),
+)
+
+router.post(
+  '/users/messages',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  createUserMessageControllerInstance.handle.bind(
+    createUserMessageControllerInstance,
+  ),
 )
 
 router.post(
