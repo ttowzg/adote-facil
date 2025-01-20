@@ -9,6 +9,7 @@ import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-
 import { updateUserControllerInstance } from './controllers/user/update-user.js'
 import { updateAnimalStatusControllerInstance } from './controllers/animal/update-animal-status.js'
 import { createUserMessageControllerInstance } from './controllers/user-message/create-user-message.js'
+import { getUserChatsControllerInstance } from './controllers/user-message/get-user-chats.js'
 
 const router = Router()
 
@@ -30,6 +31,12 @@ router.post(
   createUserMessageControllerInstance.handle.bind(
     createUserMessageControllerInstance,
   ),
+)
+
+router.get(
+  '/users/messages/chats',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  getUserChatsControllerInstance.handle.bind(getUserChatsControllerInstance),
 )
 
 router.post(

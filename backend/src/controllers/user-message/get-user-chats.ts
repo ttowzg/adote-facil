@@ -1,0 +1,29 @@
+import { Request, Response } from 'express'
+import {
+  GetUserChatsService,
+  getUserChatsServiceInstance,
+} from '../../services/user-message/get-user-chats.js'
+
+class GetUserChatsController {
+  constructor(private readonly getUserChats: GetUserChatsService) {}
+
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { user } = request
+
+    try {
+      const result = await this.getUserChats.execute({
+        userId: user?.id || '',
+      })
+
+      return response.status(200).json(result)
+    } catch (err) {
+      const error = err as Error
+      console.log({ error })
+      return response.status(500).json({ error: error.message })
+    }
+  }
+}
+
+export const getUserChatsControllerInstance = new GetUserChatsController(
+  getUserChatsServiceInstance,
+)

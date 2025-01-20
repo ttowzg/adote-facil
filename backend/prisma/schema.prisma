@@ -18,9 +18,10 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  animals          Animal[]
-  sentMessages     UserMessage[] @relation("SentMessages")
-  receivedMessages UserMessage[] @relation("ReceivedMessages")
+  animals     Animal[]
+  user1Chats  Chat[]        @relation("User1Chats")
+  user2Chats  Chat[]        @relation("User2Chats")
+  UserMessage UserMessage[]
 }
 
 enum AnimalStatus {
@@ -55,13 +56,26 @@ model AnimalImage {
   animal Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
 }
 
-model UserMessage {
-  id         String   @id @default(uuid())
-  senderId   String
-  receiverId String
-  content    String
-  createdAt  DateTime @default(now())
+model Chat {
+  id        String   @id @default(uuid())
+  user1Id   String
+  user2Id   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  sender   User @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
-  receiver User @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  user1    User          @relation("User1Chats", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2    User          @relation("User2Chats", fields: [user2Id], references: [id], onDelete: Cascade)
+  messages UserMessage[]
+}
+
+model UserMessage {
+  id        String   @id @default(uuid())
+  chatId    String
+  senderId  String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chat   Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }

@@ -4,6 +4,11 @@ import {
   UserMessageRepository,
   userMessageRepositoryInstance,
 } from '../../repositories/user-message.js'
+import {
+  ChatRepository,
+  chatRepositoryInstance,
+} from '../../repositories/chat.js'
+import { Either, Failure, Success } from '../../utils/either.js'
 
 namespace CreateUserMessageDTO {
   export type Params = {
@@ -12,27 +17,55 @@ namespace CreateUserMessageDTO {
     content: string
   }
 
-  export type Result = UserMessage
+  export type Failure = { message: string }
+
+  export type Success = UserMessage
+
+  export type Result = Either<Failure, Success>
 }
 
 export class CreateUserMessageService {
-  constructor(private readonly userMessageRepository: UserMessageRepository) {}
+  constructor(
+    private readonly chatRepository: ChatRepository,
+    private readonly userMessageRepository: UserMessageRepository,
+  ) {}
 
   async execute(
     params: CreateUserMessageDTO.Params,
   ): Promise<CreateUserMessageDTO.Result> {
     const { senderId, receiverId, content } = params
 
+    if (senderId === receiverId) {
+      return Failure.create({ message: 'Sender id is equal to receiver id' })
+    }
+
+    const chat = await this.findOrCreateChat(senderId, receiverId)
+
     const message = await this.userMessageRepository.create({
+      chatId: chat.id,
       senderId,
-      receiverId,
       content,
     })
 
-    return message
+    return Success.create(message)
+  }
+
+  private async findOrCreateChat(senderId: string, receiverId: string) {
+    const chat = await this.chatRepository.findOneByUsersId(
+      senderId,
+      receiverId,
+    )
+
+    if (chat) return chat
+
+    return this.chatRepository.create({
+      user1Id: senderId,
+      user2Id: receiverId,
+    })
   }
 }
 
 export const createUserMessageServiceInstance = new CreateUserMessageService(
+  chatRepositoryInstance,
   userMessageRepositoryInstance,
 )
