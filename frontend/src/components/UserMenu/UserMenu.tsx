@@ -6,6 +6,7 @@ import {
   Barn,
   PencilSimple,
   SignOut,
+  ChatCircleText,
 } from '@phosphor-icons/react'
 import Link from 'next/link'
 import { ReactElement, useEffect, useState } from 'react'
@@ -16,6 +17,7 @@ enum MenuItemsEnum {
   AVAILABLE_ANIMALS = 'AVAILABLE_ANIMALS',
   ADD_ANIMAL = 'ADD_ANIMAL',
   MY_ANIMALS = 'MY_ANIMALS',
+  MY_CHATS = 'MY_CHATS',
   EDIT_USER_DATA = 'EDIT_USER_DATA',
 }
 
@@ -44,6 +46,12 @@ const menuItems: MenuItem[] = [
     label: 'Meus animais disponíveis para adoção',
     icon: <Barn size={24} />,
     route: '/area_logada/meus_animais',
+  },
+  {
+    id: MenuItemsEnum.MY_CHATS,
+    label: 'Minhas conversas',
+    icon: <ChatCircleText size={24} />,
+    route: '/area_logada/conversas',
   },
   {
     id: MenuItemsEnum.EDIT_USER_DATA,
