@@ -13,7 +13,6 @@ import { getUserChatsControllerInstance } from './controllers/user-message/get-u
 
 const router = Router()
 
-// TODO trocar rotas para plural
 router.post(
   '/users',
   createUserControllerInstance.handle.bind(createUserControllerInstance),
