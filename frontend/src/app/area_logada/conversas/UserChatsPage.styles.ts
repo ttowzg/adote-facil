@@ -8,8 +8,15 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 1rem;
 
+  max-width: 100%;
+
   @media (min-width: 770px) {
     height: calc(100vh - 4rem);
+    max-width: calc(100vw - 300px - 4rem);
+  }
+
+  @media (min-width: 1300px) {
+    max-width: calc(100vw - 400px - 2rem);
   }
 `
 
@@ -64,6 +71,7 @@ export const ChatContent = styled.div`
   gap: 0.25rem;
 
   width: 100%;
+  overflow: hidden;
 `
 
 export const ChatContentHeader = styled.div`
@@ -80,7 +88,6 @@ export const ChatUserName = styled.span`
 export const ChatLastMessageTime = styled.span`
   font-size: 14px;
 `
-
 export const ChatLastMessage = styled.div`
   display: flex;
   flex-direction: row;
@@ -88,8 +95,6 @@ export const ChatLastMessage = styled.div`
   gap: 0.25rem;
 
   span {
-    max-width: 400px;
-    /* max-width: 100%; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
