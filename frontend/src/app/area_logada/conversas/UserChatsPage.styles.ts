@@ -55,6 +55,8 @@ export const UserChat = styled.div`
   transition: all 0.2s;
   cursor: pointer;
 
+  color: ${({ theme }) => theme.colors.white};
+
   &:hover {
     color: ${({ theme }) => theme.colors.green[300]};
   }
