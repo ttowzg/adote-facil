@@ -9,7 +9,8 @@ import { getUserAnimalsControllerInstance } from './controllers/animal/get-user-
 import { updateUserControllerInstance } from './controllers/user/update-user.js'
 import { updateAnimalStatusControllerInstance } from './controllers/animal/update-animal-status.js'
 import { createUserMessageControllerInstance } from './controllers/user-message/create-user-message.js'
-import { getUserChatsControllerInstance } from './controllers/user-message/get-user-chats.js'
+import { getUserChatsControllerInstance } from './controllers/chat/get-user-chats.js'
+import { getUserChatControllerInstance } from './controllers/chat/get-user-chat.js'
 
 const router = Router()
 
@@ -25,7 +26,7 @@ router.patch(
 )
 
 router.post(
-  '/users/messages',
+  '/users/chats/messages',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   createUserMessageControllerInstance.handle.bind(
     createUserMessageControllerInstance,
@@ -33,9 +34,15 @@ router.post(
 )
 
 router.get(
-  '/users/messages/chats',
+  '/users/chats',
   userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
   getUserChatsControllerInstance.handle.bind(getUserChatsControllerInstance),
+)
+
+router.get(
+  '/users/chats/:chatId',
+  userAuthMiddlewareInstance.authenticate.bind(userAuthMiddlewareInstance),
+  getUserChatControllerInstance.handle.bind(getUserChatControllerInstance),
 )
 
 router.post(

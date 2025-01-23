@@ -39,6 +39,22 @@ export class ChatRepository {
       },
     })
   }
+
+  async getChatWithMessagesByUserAndChatId(userId: string, chatId: string) {
+    return this.repository.chat.findFirst({
+      where: {
+        id: chatId,
+        OR: [{ user1Id: userId }, { user2Id: userId }],
+      },
+      include: {
+        messages: {
+          orderBy: { createdAt: 'desc' },
+        },
+        user1: { select: { id: true, name: true } },
+        user2: { select: { id: true, name: true } },
+      },
+    })
+  }
 }
 
 export const chatRepositoryInstance = new ChatRepository(prisma)
