@@ -10,7 +10,7 @@ import {
 } from '../../repositories/chat.js'
 import { Either, Failure, Success } from '../../utils/either.js'
 
-namespace CreateUserMessageDTO {
+namespace CreateUserChatMessageDTO {
   export type Params = {
     senderId: string
     receiverId: string
@@ -24,15 +24,15 @@ namespace CreateUserMessageDTO {
   export type Result = Either<Failure, Success>
 }
 
-export class CreateUserMessageService {
+export class CreateUserChatMessageService {
   constructor(
     private readonly chatRepository: ChatRepository,
     private readonly userMessageRepository: UserMessageRepository,
   ) {}
 
   async execute(
-    params: CreateUserMessageDTO.Params,
-  ): Promise<CreateUserMessageDTO.Result> {
+    params: CreateUserChatMessageDTO.Params,
+  ): Promise<CreateUserChatMessageDTO.Result> {
     const { senderId, receiverId, content } = params
 
     if (senderId === receiverId) {
@@ -65,7 +65,8 @@ export class CreateUserMessageService {
   }
 }
 
-export const createUserMessageServiceInstance = new CreateUserMessageService(
-  chatRepositoryInstance,
-  userMessageRepositoryInstance,
-)
+export const createUserChatMessageServiceInstance =
+  new CreateUserChatMessageService(
+    chatRepositoryInstance,
+    userMessageRepositoryInstance,
+  )

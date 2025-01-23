@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import {
   GetUserChatsService,
   getUserChatsServiceInstance,
-} from '../../services/user-message/get-user-chats.js'
+} from '../../services/chat/get-user-chats.js'
 
 class GetUserChatsController {
   constructor(private readonly getUserChats: GetUserChatsService) {}

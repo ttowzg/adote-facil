@@ -1,18 +1,20 @@
 import { Request, Response } from 'express'
 import {
-  CreateUserMessageService,
-  createUserMessageServiceInstance,
-} from '../../services/user-message/create-user-message.js'
+  CreateUserChatMessageService,
+  createUserChatMessageServiceInstance,
+} from '../../services/chat/create-user-chat-message.js'
 
-class CreateUserMessageController {
-  constructor(private readonly createUserMessage: CreateUserMessageService) {}
+class CreateUserChatMessageController {
+  constructor(
+    private readonly createUserChatMessage: CreateUserChatMessageService,
+  ) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { receiverId, content } = request.body
     const { user } = request
 
     try {
-      const result = await this.createUserMessage.execute({
+      const result = await this.createUserChatMessage.execute({
         senderId: user?.id || '',
         receiverId,
         content,
@@ -27,5 +29,5 @@ class CreateUserMessageController {
   }
 }
 
-export const createUserMessageControllerInstance =
-  new CreateUserMessageController(createUserMessageServiceInstance)
+export const createUserChatMessageControllerInstance =
+  new CreateUserChatMessageController(createUserChatMessageServiceInstance)
