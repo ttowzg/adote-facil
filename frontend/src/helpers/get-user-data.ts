@@ -1,8 +1,6 @@
-export function getUserData(): {
-  id: string
-  name: string
-  email: string
-} | null {
+import { UserData } from '@/@types/user-data'
+
+export function getUserData(): UserData | null {
   const user = localStorage.getItem('user')
 
   if (!user) return null

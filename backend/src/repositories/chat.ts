@@ -48,7 +48,7 @@ export class ChatRepository {
       },
       include: {
         messages: {
-          orderBy: { createdAt: 'desc' },
+          orderBy: { createdAt: 'asc' },
         },
         user1: { select: { id: true, name: true } },
         user2: { select: { id: true, name: true } },
