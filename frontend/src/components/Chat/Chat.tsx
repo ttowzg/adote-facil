@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ArrowFatLinesRight, ArrowLeft } from '@phosphor-icons/react'
 import * as S from './Chat.styles'
 import { UserData } from '@/@types/user-data'
 import { Chat } from '@/@types/chat'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getCookie } from 'cookies-next'
 import { getUserChat } from '@/api/get-user-chat'
 import { format } from 'date-fns'
+import { sendChatMessage } from '@/api/send-chat-message'
 
 interface ChatProps {
   chatId: string
@@ -13,6 +15,7 @@ interface ChatProps {
   handleReturnToChatsListClick(): void
 }
 
+// TODO finalizar input de mensagem
 export function ChatComponent({
   chatId,
   userData,
@@ -21,25 +24,61 @@ export function ChatComponent({
   const [chat, setChat] = useState<Chat | null>(null)
   const messageListRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const fetchUserChat = async () => {
-      const token = getCookie('token')
+  const fetchUserChat = useCallback(async () => {
+    const token = getCookie('token')
 
-      const response = await getUserChat(token || '', chatId)
+    const response = await getUserChat(token || '', chatId)
 
-      if (response.status === 200) {
-        setChat(response.data)
-      }
+    if (response.status === 200) {
+      setChat(response.data)
     }
-
-    fetchUserChat()
   }, [chatId])
+
+  useEffect(() => {
+    fetchUserChat()
+  }, [fetchUserChat])
 
   useEffect(() => {
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight
     }
   }, [chat])
+
+  const handleSendMessage = async (e: any) => {
+    e.preventDefault()
+
+    const messageToSend = e.target[0].value
+
+    if (!messageToSend) {
+      return
+    }
+
+    const token = getCookie('token')
+
+    const receiverId =
+      chat?.user1.id === userData?.id ? chat?.user2.id : chat?.user1.id
+
+    try {
+      const response = await sendChatMessage(token || '', {
+        receiverId: receiverId || '',
+        content: messageToSend,
+      })
+
+      if (response.status === 201) {
+        fetchUserChat()
+        e.target[0].value = ''
+      } else {
+        alert(
+          response.data.message ||
+            'Erro ao enviar a mensagem. Tente novamente.',
+        )
+      }
+    } catch (err) {
+      const error = err as Error
+      console.error('Erro ao enviar a mensagem:', error)
+      alert(error.message || 'Erro ao enviar a mensagem. Tente novamente.')
+    }
+  }
 
   return (
     <S.Wrapper>
@@ -71,13 +110,16 @@ export function ChatComponent({
         ))}
       </S.ChatMessageList>
 
-      {/* <S.ChatSendMessageInputWrapper>
-        <S.ChatSendMessageInput type="text" placeholder="Digite sua mensagem" />
+      <S.ChatSendMessageForm onSubmit={handleSendMessage}>
+        <S.ChatSendMessageInput
+          type="input"
+          placeholder="Digite sua mensagem"
+        />
 
         <S.ChatSendMessageButton>
           <ArrowFatLinesRight size={32} />
         </S.ChatSendMessageButton>
-      </S.ChatSendMessageInputWrapper> */}
+      </S.ChatSendMessageForm>
     </S.Wrapper>
   )
 }

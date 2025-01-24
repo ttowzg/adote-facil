@@ -2,7 +2,7 @@
 
 import { getUserChats } from '@/api/get-user-chats'
 import * as S from './UserChatsPage.styles'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getUserData } from '@/helpers/get-user-data'
 import { ChatCircleText, ArrowUp, ArrowDown } from '@phosphor-icons/react'
 import { getCookie } from 'cookies-next'
@@ -16,19 +16,19 @@ export function UserChatsPage() {
   const [openChat, setOpenChat] = useState<Chat | null>(null)
   const loggedUser = getUserData()
 
-  useEffect(() => {
-    const fetchUserChats = async () => {
-      const token = getCookie('token')
+  const fetchUserChats = useCallback(async () => {
+    const token = getCookie('token')
 
-      const response = await getUserChats(token || '')
+    const response = await getUserChats(token || '')
 
-      if (response.status === 200) {
-        setChats(response.data)
-      }
+    if (response.status === 200) {
+      setChats(response.data)
     }
-
-    fetchUserChats()
   }, [])
+
+  useEffect(() => {
+    fetchUserChats()
+  }, [fetchUserChats])
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString)
@@ -49,6 +49,7 @@ export function UserChatsPage() {
 
   const handleReturnToChatsListClick = () => {
     setOpenChat(null)
+    fetchUserChats()
   }
 
   return (

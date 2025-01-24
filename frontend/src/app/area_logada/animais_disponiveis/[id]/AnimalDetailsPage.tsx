@@ -15,6 +15,7 @@ import { useParams } from 'next/navigation'
 import { ArrowLeft } from '@phosphor-icons/react'
 import Link from 'next/link'
 
+// TODO implementar redirect para o chat ao clicar no botão de entrar em contato
 export function AnimalDetailsPage() {
   const [animal, setAnimal] = useState<Animal | null>(null)
 

@@ -104,8 +104,42 @@ export const ChatMessage = styled.div<ChatMessageWrapperProps>`
   `}
 `
 
-export const ChatSendMessageInputWrapper = styled.div``
+export const ChatSendMessageForm = styled.form`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-export const ChatSendMessageInput = styled.input``
+    background-color: ${theme.colors.gray[200]};
 
-export const ChatSendMessageButton = styled.div``
+    padding: 1rem 0.5rem;
+
+    gap: 0.75rem;
+  `}
+`
+
+export const ChatSendMessageInput = styled.input`
+  width: calc(100% - 4.75rem);
+`
+
+export const ChatSendMessageButton = styled.button`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background-color: transparent;
+
+    color: ${theme.colors.gray[600]};
+
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      color: ${theme.colors.green[300]};
+    }
+  `}
+`
