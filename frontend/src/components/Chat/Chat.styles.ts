@@ -10,16 +10,15 @@ export const Wrapper = styled.div`
 
     overflow: hidden;
 
-    width: calc(100vw - 6rem);
+    width: calc(100vw - 4rem);
     height: calc(100vh - 4rem);
 
     @media (min-width: 770px) {
-      /* height: calc(100vh - 4rem); */
-      width: calc(100vw - 300px - 6rem);
+      width: calc(100vw - 300px - 4rem);
     }
 
     @media (min-width: 1300px) {
-      width: calc(100vw - 400px - 6rem);
+      width: calc(100vw - 400px - 4rem);
     }
   `}
 `

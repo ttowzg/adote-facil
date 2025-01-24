@@ -15,7 +15,6 @@ interface ChatProps {
   handleReturnToChatsListClick(): void
 }
 
-// TODO finalizar input de mensagem
 export function ChatComponent({
   chatId,
   userData,
