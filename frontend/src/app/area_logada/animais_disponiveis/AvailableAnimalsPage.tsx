@@ -23,6 +23,8 @@ export function AvailableAnimalsPage() {
 
       const response = await getAvailableAnimals(token || '')
 
+      console.log(response)
+
       if (response.status === 200) {
         setAvailableAnimals(response.data.animals)
       }

@@ -14,6 +14,8 @@ import { Animal } from '@/@types/animal'
 import { useParams } from 'next/navigation'
 import { ArrowLeft } from '@phosphor-icons/react'
 import Link from 'next/link'
+import { getCookie } from 'cookies-next'
+import { insertUserChat } from '@/api/insert-user-chat'
 
 // TODO implementar redirect para o chat ao clicar no botão de entrar em contato
 export function AnimalDetailsPage() {
@@ -28,6 +30,22 @@ export function AnimalDetailsPage() {
     console.log({ getAnimalResponse })
     setAnimal(getAnimalResponse)
   }, [getAnimalById, params.id])
+
+  const handleContactAnimalOwner = async () => {
+    try {
+      const token = getCookie('token') || ''
+
+      const response = await insertUserChat(animal?.userId || '', token)
+
+      if (response.status !== 201) {
+        alert('Ocorreu um erro ao contatar o dono, por favor tente novamente')
+      }
+
+      const chatId = response.data.chat.id
+
+      window.location.href = `/area_logada/conversas/${chatId}`
+    } catch (err) {}
+  }
 
   if (!animal) return <span>Carregando...</span>
 
@@ -68,7 +86,9 @@ export function AnimalDetailsPage() {
           <span>{animal.description ?? 'N/D'}</span>
         </S.AnimalDescriptionWrapper>
 
-        <Button type="submit">Entrar em contato com o dono</Button>
+        <Button type="button" onClick={handleContactAnimalOwner}>
+          Entrar em contato com o dono
+        </Button>
       </S.ContentWrapper>
     </S.Wrapper>
   )

@@ -2,7 +2,7 @@
 
 import { getUserChats } from '@/api/get-user-chats'
 import * as S from './UserChatsPage.styles'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getUserData } from '@/helpers/get-user-data'
 import { ChatCircleText, ArrowUp, ArrowDown } from '@phosphor-icons/react'
 import { getCookie } from 'cookies-next'
@@ -10,11 +10,14 @@ import { format, isSameDay, differenceInDays } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ChatComponent } from '@/components/Chat'
 import { Chat } from '@/@types/chat'
+import { useParams } from 'next/navigation'
 
 export function UserChatsPage() {
   const [chats, setChats] = useState<Chat[]>([])
   const [openChat, setOpenChat] = useState<Chat | null>(null)
   const loggedUser = getUserData()
+
+  const params = useParams<{ 'active-chat-id'?: string[] }>()
 
   const fetchUserChats = useCallback(async () => {
     const token = getCookie('token')
@@ -29,6 +32,19 @@ export function UserChatsPage() {
   useEffect(() => {
     fetchUserChats()
   }, [fetchUserChats])
+
+  useMemo(() => {
+    if (params['active-chat-id']) {
+      const chatId = params['active-chat-id'][0]
+
+      const chat = chats.find((chat) => chat.id === chatId)
+
+      if (chat) {
+        // window.location.href = `/area_logada/conversas`
+        setOpenChat(chat)
+      }
+    }
+  }, [params, chats])
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString)
@@ -48,8 +64,11 @@ export function UserChatsPage() {
   }
 
   const handleReturnToChatsListClick = () => {
-    setOpenChat(null)
-    fetchUserChats()
+    window.location.href = '/area_logada/conversas'
+    setTimeout(() => {
+      setOpenChat(null)
+      fetchUserChats()
+    }, 1000)
   }
 
   return (
@@ -77,17 +96,23 @@ export function UserChatsPage() {
                     : chat.user1.name}
                 </S.ChatUserName>
                 <S.ChatLastMessageTime>
-                  {formatDate(chat.messages[0].createdAt)}
+                  {chat.messages.length
+                    ? formatDate(chat.messages[0].createdAt)
+                    : ' '}
                 </S.ChatLastMessageTime>
               </S.ChatContentHeader>
 
               <S.ChatLastMessage>
-                {chat.messages[0].senderId === loggedUser?.id ? (
-                  <ArrowUp size={16} />
-                ) : (
-                  <ArrowDown size={16} />
-                )}
-                <span>{chat.messages[0].content}</span>
+                {chat.messages.length ? (
+                  chat.messages[0].senderId === loggedUser?.id ? (
+                    <ArrowUp size={16} />
+                  ) : (
+                    <ArrowDown size={16} />
+                  )
+                ) : null}
+                <span>
+                  {chat.messages.length ? chat.messages[0].content : ' '}
+                </span>
               </S.ChatLastMessage>
             </S.ChatContent>
           </S.UserChat>
