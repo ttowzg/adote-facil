@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Pencil, Trash } from '@phosphor-icons/react'
+import { Trash } from '@phosphor-icons/react'
 import { Button } from '@/components/Button'
 import * as S from './AnimalCard.styles'
 
@@ -99,9 +99,6 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
             <Button type="button" onClick={handleConfirmAnimalAdoption}>
               Confirmar adoção
             </Button>
-            <S.MyAnimalsButton type="button" $buttonType="edit">
-              <Pencil size={24} />
-            </S.MyAnimalsButton>
             <S.MyAnimalsButton
               type="button"
               $buttonType="delete"
