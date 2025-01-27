@@ -17,7 +17,6 @@ import Link from 'next/link'
 import { getCookie } from 'cookies-next'
 import { insertUserChat } from '@/api/insert-user-chat'
 
-// TODO implementar redirect para o chat ao clicar no botão de entrar em contato
 export function AnimalDetailsPage() {
   const [animal, setAnimal] = useState<Animal | null>(null)
 
