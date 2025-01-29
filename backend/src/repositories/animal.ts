@@ -1,9 +1,15 @@
-import { AnimalStatus, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { prisma } from '../database.js'
 import {
   CreateAnimalRepositoryDTO,
   UpdateAnimalStatusRepositoryDTO,
 } from './animal.dto.js'
+
+enum AnimalStatusEnum {
+  available = 'available',
+  adopted = 'adopted',
+  removed = 'removed',
+}
 
 export class AnimalRepository {
   constructor(private readonly repository: PrismaClient) {}
@@ -27,14 +33,14 @@ export class AnimalRepository {
 
   async findAllAvailableNotFromUser(userId: string) {
     return this.repository.animal.findMany({
-      where: { userId: { not: userId }, status: AnimalStatus.available },
+      where: { userId: { not: userId }, status: AnimalStatusEnum.available },
       include: { images: true },
     })
   }
 
   async findAllByUserId(userId: string) {
     return this.repository.animal.findMany({
-      where: { userId, status: AnimalStatus.available },
+      where: { userId, status: AnimalStatusEnum.available },
       include: { images: true },
     })
   }

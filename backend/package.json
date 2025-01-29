@@ -1,11 +1,13 @@
 {
   "type": "module",
   "scripts": {
+    "generate": "prisma generate",
     "migrate": "prisma migrate dev --name",
     "migrate:rollback": "prisma migrate reset --force --skip-seed",
+    "migrate:prod": "prisma migrate deploy",
+    "dev": "tsx watch src/server.ts",
     "build": "swc src --out-dir dist --strip-leading-paths",
-    "start": "node dist/server.js",
-    "dev": "tsx watch src/server.ts"
+    "start": "npm run migrate:prod && node dist/server.js"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",

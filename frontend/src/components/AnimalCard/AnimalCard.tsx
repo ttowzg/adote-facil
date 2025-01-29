@@ -12,7 +12,7 @@ interface AnimalCardProps {
   animal: {
     id: string
     type: string
-    gender: 'Macho' | 'Fêmea'
+    gender: 'macho' | 'fêmea'
     race: string
     description: string
     images: Array<{
