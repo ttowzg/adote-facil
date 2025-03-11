@@ -17,14 +17,15 @@ import {
   AnimalFilterFormData,
 } from '@/components/AnimalFilterForm'
 
-// TODO add loader to display while fetching animals
 export function AvailableAnimalsPage() {
   const { availableAnimals, setAvailableAnimals } = useContext(AnimalsContext)
   const [filter, setFilter] = useState<AnimalFilterFormData | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchAvailableAnimals = async () => {
+      setLoading(true)
       const token = getCookie('token')
 
       const response = await getAvailableAnimals(filter, token || '')
@@ -34,6 +35,7 @@ export function AvailableAnimalsPage() {
       if (response.status === 200) {
         setAvailableAnimals(response.data.animals)
       }
+      setLoading(false)
     }
 
     fetchAvailableAnimals()
@@ -74,7 +76,9 @@ export function AvailableAnimalsPage() {
           </S.FilterButtonsWrapper>
         )}
       </S.TitleWrapper>
-      {availableAnimals.length ? (
+      {loading ? (
+        <p>Carregando...</p>
+      ) : availableAnimals.length ? (
         <S.AnimalsListWrapper>
           {availableAnimals.map((animal) => (
             <AnimalCard
