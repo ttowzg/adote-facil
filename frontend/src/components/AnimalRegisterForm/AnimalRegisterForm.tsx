@@ -60,10 +60,13 @@ export function AnimalRegisterForm() {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<AnimalRegisterFormData>({
     resolver: zodResolver(animalRegisterFormSchema),
     defaultValues: { pictures: [] },
   })
+
+  const descriptionValue = watch('description', '')
 
   const handleAnimalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -192,8 +195,11 @@ export function AnimalRegisterForm() {
           <S.FormRow>
             <S.AnimalDescriptionWrapper>
               <label>
-                Descrição
-                <textarea {...register('description')} />
+                <S.AnimalDescriptionLabel>
+                  <span>Descrição</span>
+                  <span>{descriptionValue?.length}/300</span>
+                </S.AnimalDescriptionLabel>
+                <textarea maxLength={300} {...register('description')} />
               </label>
             </S.AnimalDescriptionWrapper>
           </S.FormRow>

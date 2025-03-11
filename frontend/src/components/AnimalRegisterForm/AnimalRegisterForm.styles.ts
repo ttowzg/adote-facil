@@ -171,6 +171,18 @@ export const AnimalDescriptionWrapper = styled.div`
   }
 `
 
+export const AnimalDescriptionLabel = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  span:last-child {
+    font-size: 0.75rem;
+    color: ${({ theme }) => theme.colors.gray[600]};
+  }
+`
+
 export const AnimalPicturesInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
