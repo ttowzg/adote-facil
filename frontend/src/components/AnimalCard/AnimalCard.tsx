@@ -11,6 +11,7 @@ import { getCookie } from 'cookies-next'
 interface AnimalCardProps {
   animal: {
     id: string
+    name: string
     type: string
     gender: 'macho' | 'fêmea'
     race: string
@@ -24,7 +25,7 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { id, type, gender, race, images } = animal
+  const { id, name, gender, images } = animal
 
   const animalImageBase64 = images[0]
 
@@ -90,9 +91,8 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
       </S.ImageWrapper>
       <S.Content>
         <S.AnimalInfo>
-          <span>Tipo: {type}</span>
-          <span>Gênero: {gender}</span>
-          <span>Raça: {race}</span>
+          <span>{name}</span>
+          <span>{gender}</span>
         </S.AnimalInfo>
         {listType === 'my-animals' ? (
           <S.MyAnimalsButtonsWrapper>

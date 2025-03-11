@@ -28,13 +28,11 @@ export const GoBackButtonWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
 
   gap: 1rem;
 
   width: 100%;
-  max-width: 600px;
 `
 
 export const AnimalPicturesSwiper = styled(Swiper)`
@@ -42,8 +40,8 @@ export const AnimalPicturesSwiper = styled(Swiper)`
   align-items: flex-start;
   justify-content: flex-start;
 
-  width: 10rem;
-  height: 16rem;
+  width: 80rem;
+  height: 40rem;
 
   .swiper-wrapper {
     display: flex;
@@ -62,29 +60,38 @@ export const AnimalPictureSwiperSlide = styled(SwiperSlide)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 10rem;
-  height: 14rem;
+
+  width: 80rem;
+  height: 40rem;
 
   position: relative;
 
   img {
-    border-radius: 6px;
+    border-radius: 30px;
   }
 `
 
 export const AnimalInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 
   align-items: flex-start;
+`
 
-  font-size: 1.5rem;
+export const AnimalTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 `
 
 export const AnimalDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.25rem;
+
+  span:first-child {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
 `

@@ -25,8 +25,8 @@ enum AnimalType {
 }
 
 enum AnimalGender {
-  MACHO = 'macho',
-  FEMEA = 'femea',
+  MACHO = 'Macho',
+  FEMEA = 'Fêmea',
 }
 
 const animalRegisterFormSchema = z.object({

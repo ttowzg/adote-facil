@@ -75,19 +75,22 @@ export function AnimalDetailsPage() {
         </S.AnimalPicturesSwiper>
 
         <S.AnimalInfoWrapper>
-          <span>Tipo: {animal.type}</span>
-          <span>Gênero: {animal.gender}</span>
-          <span>Raça: {animal.race ?? 'SRD'}</span>
+          <S.AnimalTitleWrapper>
+            <h1>{animal.name}</h1>
+            <span>
+              {animal.type} | {animal.gender} | {animal.race ?? 'SRD'}
+            </span>
+          </S.AnimalTitleWrapper>
+
+          <S.AnimalDescriptionWrapper>
+            <span>Descrição</span>
+            <span>{animal.description ?? 'N/D'}</span>
+          </S.AnimalDescriptionWrapper>
+
+          <Button type="button" onClick={handleContactAnimalOwner}>
+            Entrar em contato com o dono
+          </Button>
         </S.AnimalInfoWrapper>
-
-        <S.AnimalDescriptionWrapper>
-          <span>Descrição</span>
-          <span>{animal.description ?? 'N/D'}</span>
-        </S.AnimalDescriptionWrapper>
-
-        <Button type="button" onClick={handleContactAnimalOwner}>
-          Entrar em contato com o dono
-        </Button>
       </S.ContentWrapper>
     </S.Wrapper>
   )
