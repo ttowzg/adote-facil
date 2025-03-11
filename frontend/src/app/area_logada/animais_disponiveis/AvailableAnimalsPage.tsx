@@ -8,20 +8,26 @@ import { EmptyAnimals } from '@/components/EmptyAnimals'
 import { DefaultDialog } from '@/components/DefaultDialog'
 
 import * as S from './AvailableAnimalsPage.styles'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getCookie } from 'cookies-next'
 import { getAvailableAnimals } from '@/api/get-available-animals'
 import { AnimalsContext } from '@/contexts/animals'
+import {
+  AnimalFilterForm,
+  AnimalFilterFormData,
+} from '@/components/AnimalFilterForm'
 
 // TODO add loader to display while fetching animals
 export function AvailableAnimalsPage() {
   const { availableAnimals, setAvailableAnimals } = useContext(AnimalsContext)
+  const [filter, setFilter] = useState<AnimalFilterFormData | null>(null)
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   useEffect(() => {
     const fetchAvailableAnimals = async () => {
       const token = getCookie('token')
 
-      const response = await getAvailableAnimals(token || '')
+      const response = await getAvailableAnimals(filter, token || '')
 
       console.log(response)
 
@@ -31,26 +37,41 @@ export function AvailableAnimalsPage() {
     }
 
     fetchAvailableAnimals()
-  }, [setAvailableAnimals])
+  }, [setAvailableAnimals, filter])
+
+  const handleFilterAvailableAnimals = (data: AnimalFilterFormData) => {
+    setFilter(data)
+  }
+
+  const handleRemoveFilters = () => {
+    setFilter(null)
+  }
 
   return (
     <S.Wrapper>
       <S.TitleWrapper>
         <h1>Animais disponíveis para adoção</h1>
-        {!!availableAnimals.length && (
-          <Dialog.Root>
-            <Dialog.Trigger asChild>
-              <Button>Filtrar</Button>
-            </Dialog.Trigger>
-            <DefaultDialog>
-              <Dialog.Close asChild>
-                {/* <button className="IconButton" aria-label="Close">
-                    <h1>sadasdsa</h1>
-                  </button> */}
-              </Dialog.Close>
-              {/* <AnimalForm location="modal" /> */}
-            </DefaultDialog>
-          </Dialog.Root>
+        {(!!availableAnimals.length || filter) && (
+          <S.FilterButtonsWrapper>
+            {filter && (
+              <Button onClick={handleRemoveFilters} buttonStyle="red-filled">
+                Limpar filtros
+              </Button>
+            )}
+
+            <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
+              <Dialog.Trigger asChild>
+                <Button onClick={() => setDialogOpen(true)}>Filtrar</Button>
+              </Dialog.Trigger>
+              <DefaultDialog>
+                <Dialog.DialogTitle></Dialog.DialogTitle>
+                <AnimalFilterForm
+                  handleFilterAvailableAnimals={handleFilterAvailableAnimals}
+                  closeDialog={() => setDialogOpen(false)}
+                />
+              </DefaultDialog>
+            </Dialog.Root>
+          </S.FilterButtonsWrapper>
         )}
       </S.TitleWrapper>
       {availableAnimals.length ? (

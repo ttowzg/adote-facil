@@ -43,6 +43,12 @@ export const TitleWrapper = styled.div`
   `}
 `
 
+export const FilterButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`
+
 export const AnimalsListWrapper = styled.div`
   gap: 1rem;
 
