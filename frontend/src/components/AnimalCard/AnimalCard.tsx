@@ -25,7 +25,7 @@ interface AnimalCardProps {
 }
 
 export function AnimalCard({ animal, listType }: AnimalCardProps) {
-  const { id, name, gender, images } = animal
+  const { id, name, type, gender, images } = animal
 
   const animalImageBase64 = images[0]
 
@@ -92,7 +92,9 @@ export function AnimalCard({ animal, listType }: AnimalCardProps) {
       <S.Content>
         <S.AnimalInfo>
           <span>{name}</span>
-          <span>{gender}</span>
+          <span>
+            {type} | {gender}
+          </span>
         </S.AnimalInfo>
         {listType === 'my-animals' ? (
           <S.MyAnimalsButtonsWrapper>
