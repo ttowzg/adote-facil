@@ -70,9 +70,13 @@ O "Adote Fácil" é um sistema voltado para facilitar a adoção de animais. A A
 
 Certifique-se de ter o Docker e o Docker Compose instalados na sua máquina. Antes de iniciar o sistema, crie os arquivos .env nos diretórios /backend e /frontend baseando-se nos respectivos arquivos .env.example.
 
-O arquivo .env.example do backend já contém as variáveis usadas pelo Docker Compose para criar os containers do banco e do backend, com os valores corretos, então basta replicá-los.
+O arquivo .env.example do backend já contém as variáveis usadas pelo Docker Compose para criar os containers do banco e do backend com os valores corretos, então basta replicá-los. Caso queira, é possível alterá-las também.
+
+As portas de execução do backend e frontend estão hardcoded no arquivo `docker-compose.yml`. O backend executa na porta 8080 e o frontend na porta 3000. É possível alterar estes valores, só tomando cuidado para refletir as alterações nas variáveis de ambiente das APIs.
 
 Para subir os containers, entre na pasta /backend e execute o comando:
 ```shell
 docker compose up
 ```
+
+Em seguida, basta acessar a url http://localhost:3000 para ter acesso à plataforma (caso tenha trocado a porta de execução do frontend, altere o 3000 para a porta no qual o frontend está executando).
