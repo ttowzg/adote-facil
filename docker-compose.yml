@@ -36,6 +36,11 @@ services:
     command: sh -c "until nc -z adote-facil-postgres 5432; do echo 'Waiting for postgres...'; sleep 1; done; npm start"
     networks:
       - adote-facil-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3       
 
   adote-facil-frontend:
     build:
@@ -50,6 +55,11 @@ services:
       - adote-facil-backend
     networks:
       - adote-facil-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   db_data:
